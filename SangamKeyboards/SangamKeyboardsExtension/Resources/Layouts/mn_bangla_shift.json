@@ -1,0 +1,248 @@
+{
+  "keyWidth": "7.34375%",
+  "horizontalGap": "1.71875%",
+  "rows": [
+    {
+      "verticalGap": "5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "unichar": "ঔ",
+          "keyLabel": "",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left"
+        },
+        {
+          "unichar": "ঐ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "আ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ঈ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ঊ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ভ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ঙ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ঘ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ধ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ঝ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ঢ",
+          "keyLabel": "",
+          "keyEdgeFlags": "right",
+          "popupCodes": "ঢঢ়"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "unichar": "ও",
+          "keyLabel": "",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left"
+        },
+        {
+          "unichar": "এ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "অ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ই",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "উ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ফ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ৃ",
+          "keyLabel": "",
+          "popupCodes": "ৃৄ"
+        },
+        {
+          "unichar": "খ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "থ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ছ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ঠ",
+          "keyLabel": "",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "codes": "-1",
+          "keyLabel": "",
+          "keyWidth": "11.875%",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left",
+          "isModifier": true,
+          "isShifted": true
+        },
+        {
+          "unichar": "ঁ",
+          "keyLabel": ""
+        },
+        {
+          "codes": "2490",
+          "keyLabel": "জ্ঞ"
+        },
+        {
+          "unichar": "ণ",
+          "keyLabel": ""
+        },
+        {
+          "codes": "2501",
+          "keyLabel": "ক্ষ"
+        },
+        {
+          "unichar": "ষ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ঋ",
+          "keyLabel": "",
+          "popupCodes": "ঋৠ"
+        },
+        {
+          "unichar": "য়",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ৎ",
+          "keyLabel": ""
+        },
+        {
+          "codes": "-5",
+          "keyLabel": "",
+          "keyWidth": "11.875%",
+          "keyEdgeFlags": "right",
+          "isRepeatable": true
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": "phone",
+      "keys": [
+        {
+          "codes": "-2",
+          "keyLabel": "123",
+          "keyWidth": "11.875%",
+          "horizontalGap": "0.9375%"
+        },
+        {
+          "codes": "-6",
+          "keyLabel": "⌘",
+          "keyWidth": "11.875%"
+        },
+        {
+          "codes": "32",
+          "keyLabel": "#space",
+          "keyWidth": "33.84375%",
+          "isRepeatable": true
+        },
+        {
+          "unichar": "॥",
+          "keyLabel": "",
+          "keyWidth": "8.5%"
+        },
+        {
+          "codes": "10",
+          "keyLabel": "#return",
+          "keyWidth": "25.15625%",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": "pad",
+      "keys": [
+        {
+          "codes": "-2",
+          "keyLabel": "123",
+          "keyWidth": "11.875%",
+          "horizontalGap": "0.9375%"
+        },
+        {
+          "codes": "-6",
+          "keyLabel": "⌘",
+          "keyWidth": "11.875%"
+        },
+        {
+          "codes": "32",
+          "keyLabel": "#space",
+          "keyWidth": "33.84375%",
+          "isRepeatable": true
+        },
+        {
+          "unichar": "॥",
+          "keyLabel": "",
+          "keyWidth": "8%"
+        },
+        {
+          "codes": "10",
+          "keyLabel": "#return",
+          "keyWidth": "15.9375%",
+          "keyEdgeFlags": "right"
+        },
+        {
+          "codes": "-10",
+          "keyLabel": "Done",
+          "keyWidth": "8%",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    }
+  ]
+}

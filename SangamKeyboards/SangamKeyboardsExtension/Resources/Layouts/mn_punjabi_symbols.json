@@ -1,0 +1,233 @@
+{
+  "keyWidth": "8.125%",
+  "horizontalGap": "1.875%",
+  "rows": [
+    {
+      "verticalGap": "5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "unichar": "੧",
+          "keyLabel": "",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left",
+          "popupCodes": "੧1"
+        },
+        {
+          "unichar": "੨",
+          "keyLabel": "",
+          "popupCodes": "੨2"
+        },
+        {
+          "unichar": "੩",
+          "keyLabel": "",
+          "popupCodes": "੩3"
+        },
+        {
+          "unichar": "੪",
+          "keyLabel": "",
+          "popupCodes": "੪4"
+        },
+        {
+          "unichar": "੫",
+          "keyLabel": "",
+          "popupCodes": "੫5"
+        },
+        {
+          "unichar": "੬",
+          "keyLabel": "",
+          "popupCodes": "੬6"
+        },
+        {
+          "unichar": "੭",
+          "keyLabel": "",
+          "popupCodes": "੭7"
+        },
+        {
+          "unichar": "੮",
+          "keyLabel": "",
+          "popupCodes": "੮8"
+        },
+        {
+          "unichar": "੯",
+          "keyLabel": "",
+          "popupCodes": "੯9"
+        },
+        {
+          "unichar": "੦",
+          "keyLabel": "",
+          "keyEdgeFlags": "right",
+          "popupCodes": "੦0"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "unichar": "-",
+          "keyLabel": "",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left"
+        },
+        {
+          "unichar": "/",
+          "keyLabel": ""
+        },
+        {
+          "unichar": ":",
+          "keyLabel": ""
+        },
+        {
+          "unichar": ";",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "(",
+          "keyLabel": ""
+        },
+        {
+          "unichar": ")",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "₹",
+          "keyLabel": ""
+        },
+        {
+          "codes": "38",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "@",
+          "keyLabel": ""
+        },
+        {
+          "codes": "34",
+          "keyLabel": "",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "codes": "-1",
+          "keyLabel": "#+=",
+          "keyWidth": "11.875%",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left",
+          "isShifted": false
+        },
+        {
+          "codes": "46",
+          "keyLabel": ".",
+          "keyWidth": "11.875%",
+          "horizontalGap": "3.75%"
+        },
+        {
+          "codes": "44",
+          "keyLabel": ",",
+          "keyWidth": "11.875%",
+          "horizontalGap": "horizontalGap=1.875%"
+        },
+        {
+          "codes": "63",
+          "keyLabel": "?",
+          "keyWidth": "11.875%",
+          "horizontalGap": "1.875%"
+        },
+        {
+          "codes": "33",
+          "keyLabel": "!",
+          "keyWidth": "11.875%",
+          "horizontalGap": "1.875%"
+        },
+        {
+          "codes": "39",
+          "keyLabel": "'",
+          "keyWidth": "11.875%",
+          "horizontalGap": "1.875%"
+        },
+        {
+          "codes": "-5",
+          "keyLabel": "⌫",
+          "keyWidth": "11.875%",
+          "horizontalGap": "3.75%",
+          "keyEdgeFlags": "right",
+          "isRepeatable": true
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": "phone",
+      "keys": [
+        {
+          "codes": "-2",
+          "keyLabel": "#abc",
+          "keyWidth": "11.875%",
+          "horizontalGap": "0.9375%"
+        },
+        {
+          "codes": "-6",
+          "keyLabel": "⌘",
+          "keyWidth": "11.875%"
+        },
+        {
+          "codes": "32",
+          "keyLabel": "#space",
+          "keyWidth": "44.0985%",
+          "isRepeatable": true
+        },
+        {
+          "codes": "10",
+          "keyLabel": "#return",
+          "keyWidth": "24.6515%"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": "pad",
+      "keys": [
+        {
+          "codes": "-2",
+          "keyLabel": "#abc",
+          "keyWidth": "11.875%",
+          "horizontalGap": "0.9375%"
+        },
+        {
+          "codes": "-6",
+          "keyLabel": "⌘",
+          "keyWidth": "11.875%"
+        },
+        {
+          "codes": "32",
+          "keyLabel": "#space",
+          "keyWidth": "39.50475%",
+          "isRepeatable": true
+        },
+        {
+          "codes": "10",
+          "keyLabel": "#return",
+          "keyWidth": "19.27025%"
+        },
+        {
+          "codes": "-10",
+          "keyLabel": "Done",
+          "keyWidth": "8%",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,251 @@
+{
+  "keyWidth": "7.34375%",
+  "horizontalGap": "1.71875%",
+  "rows": [
+    {
+      "verticalGap": "5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "unichar": "ਔ",
+          "keyLabel": "",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left"
+        },
+        {
+          "unichar": "ਐ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ਆ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ਈ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ਊ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ਭ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ਙ",
+          "keyLabel": "",
+          "popupCodes": "ਙਞ"
+        },
+        {
+          "unichar": "ਘ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ਧ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ਝ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ਢ",
+          "keyLabel": "",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "unichar": "ਓ",
+          "keyLabel": "",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left"
+        },
+        {
+          "unichar": "ਏ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ਅ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ਇ",
+          "keyLabel": "",
+          "popupCodes": "ਇੲ"
+        },
+        {
+          "unichar": "ਉ",
+          "keyLabel": "",
+          "popupCodes": "ਉੳ"
+        },
+        {
+          "unichar": "ਫ",
+          "keyLabel": "",
+          "popupCodes": "ਫਫ਼"
+        },
+        {
+          "unichar": "ੜ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ਖ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ਥ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ਛ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ਠ",
+          "keyLabel": "",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "codes": "-1",
+          "keyLabel": "",
+          "keyWidth": "11.875%",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left",
+          "isModifier": true,
+          "isShifted": true
+        },
+        {
+          "unichar": "ੰ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ਞ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ਣ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ਵ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ੳ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ਲ਼",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ਸ਼",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ੲ",
+          "keyLabel": ""
+        },
+        {
+          "codes": "-5",
+          "keyLabel": "",
+          "keyWidth": "11.875%",
+          "keyEdgeFlags": "right",
+          "isRepeatable": true
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": "phone",
+      "keys": [
+        {
+          "codes": "-2",
+          "keyLabel": "123",
+          "keyWidth": "11.875%",
+          "horizontalGap": "0.9375%"
+        },
+        {
+          "codes": "-6",
+          "keyLabel": "⌘",
+          "keyWidth": "11.875%"
+        },
+        {
+          "codes": "32",
+          "keyLabel": "#space",
+          "keyWidth": "33.84375%",
+          "isRepeatable": true
+        },
+        {
+          "unichar": "।",
+          "keyLabel": "",
+          "keyWidth": "8.5%",
+          "popupCodes": "।॥"
+        },
+        {
+          "codes": "10",
+          "keyLabel": "#return",
+          "keyWidth": "25.15625%",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": "pad",
+      "keys": [
+        {
+          "codes": "-2",
+          "keyLabel": "123",
+          "keyWidth": "11.875%",
+          "horizontalGap": "0.9375%"
+        },
+        {
+          "codes": "-6",
+          "keyLabel": "⌘",
+          "keyWidth": "11.875%"
+        },
+        {
+          "codes": "32",
+          "keyLabel": "#space",
+          "keyWidth": "33.84375%",
+          "isRepeatable": true
+        },
+        {
+          "unichar": "।",
+          "keyLabel": "",
+          "keyWidth": "8%",
+          "popupCodes": "।॥"
+        },
+        {
+          "codes": "10",
+          "keyLabel": "#return",
+          "keyWidth": "15.9375%",
+          "keyEdgeFlags": "right"
+        },
+        {
+          "codes": "-10",
+          "keyLabel": "Done",
+          "keyWidth": "8%",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    }
+  ]
+}

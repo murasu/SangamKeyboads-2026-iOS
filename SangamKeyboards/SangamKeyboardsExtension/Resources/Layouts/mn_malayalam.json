@@ -1,0 +1,272 @@
+{
+  "keyWidth": "7.34375%",
+  "horizontalGap": "1.71875%",
+  "rows": [
+    {
+      "verticalGap": "5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "codes": "3415",
+          "keyLabel": " ൗ",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left",
+          "popupCodes": "ൌഔ"
+        },
+        {
+          "codes": "3400",
+          "keyLabel": " ൈ",
+          "popupCodes": "ൈഐ"
+        },
+        {
+          "codes": "3390",
+          "keyLabel": " ാ",
+          "popupCodes": "ാആ"
+        },
+        {
+          "codes": "3392",
+          "keyLabel": " ീ",
+          "popupCodes": "ീഈ"
+        },
+        {
+          "codes": "3394",
+          "keyLabel": " ൂ",
+          "popupCodes": "ൂഊ"
+        },
+        {
+          "codes": "3372",
+          "keyLabel": "ബ",
+          "popupCodes": "ബഭ"
+        },
+        {
+          "codes": "3385",
+          "keyLabel": "ഹ"
+        },
+        {
+          "codes": "3351",
+          "keyLabel": "ഗ",
+          "popupCodes": "ഗഘ"
+        },
+        {
+          "codes": "3366",
+          "keyLabel": "ദ",
+          "popupCodes": "ദധ"
+        },
+        {
+          "codes": "3356",
+          "keyLabel": "ജ",
+          "popupCodes": "ജഝഞ"
+        },
+        {
+          "codes": "3361",
+          "keyLabel": "ഡ",
+          "keyEdgeFlags": "right",
+          "popupCodes": "ഡഢ"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "codes": "3403",
+          "keyLabel": " േ ാ",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left",
+          "popupCodes": "ോഓ"
+        },
+        {
+          "codes": "3399",
+          "keyLabel": " േ",
+          "popupCodes": "േഏ"
+        },
+        {
+          "codes": "3330",
+          "keyLabel": "ം",
+          "popupCodes": "ംഃഅ"
+        },
+        {
+          "codes": "3391",
+          "keyLabel": " ി",
+          "popupCodes": "ിഇ"
+        },
+        {
+          "codes": "3393",
+          "keyLabel": " ു",
+          "popupCodes": "ുഉ"
+        },
+        {
+          "codes": "3370",
+          "keyLabel": "പ",
+          "popupCodes": "പഫ"
+        },
+        {
+          "codes": "3376",
+          "keyLabel": "ര",
+          "popupCodes": "രറർഋൃൄ"
+        },
+        {
+          "codes": "3349",
+          "keyLabel": "ക",
+          "popupCodes": "കഖൿ"
+        },
+        {
+          "codes": "3364",
+          "keyLabel": "ത",
+          "popupCodes": "തഥ"
+        },
+        {
+          "codes": "3354",
+          "keyLabel": "ച",
+          "popupCodes": "ചഛ"
+        },
+        {
+          "codes": "3359",
+          "keyLabel": "ട",
+          "keyEdgeFlags": "right",
+          "popupCodes": "ടഠ"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "codes": "-1",
+          "keyLabel": "⇧",
+          "keyWidth": "11.875%",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left",
+          "isModifier": true,
+          "isShifted": false
+        },
+        {
+          "codes": "3402",
+          "keyLabel": " െ ാ",
+          "popupCodes": "ൊഒ"
+        },
+        {
+          "codes": "3398",
+          "keyLabel": " െ",
+          "popupCodes": "െഎ"
+        },
+        {
+          "codes": "3374",
+          "keyLabel": "മ",
+          "popupCodes": "മം"
+        },
+        {
+          "codes": "3368",
+          "keyLabel": "ന",
+          "popupCodes": "നണൻൺ"
+        },
+        {
+          "codes": "3381",
+          "keyLabel": "വ"
+        },
+        {
+          "codes": "3378",
+          "keyLabel": "ല",
+          "popupCodes": "ലളഴൽൾഌ"
+        },
+        {
+          "codes": "3384",
+          "keyLabel": "സ",
+          "popupCodes": "സഷശ"
+        },
+        {
+          "codes": "3375",
+          "keyLabel": "യ"
+        },
+        {
+          "codes": "-5",
+          "keyLabel": "⌫",
+          "keyWidth": "11.875%",
+          "keyEdgeFlags": "right",
+          "isRepeatable": true
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": "phone",
+      "keys": [
+        {
+          "codes": "-2",
+          "keyLabel": "123",
+          "keyWidth": "11.875%",
+          "horizontalGap": "0.9375%"
+        },
+        {
+          "codes": "-6",
+          "keyLabel": "⌘",
+          "keyWidth": "11.875%"
+        },
+        {
+          "codes": "32",
+          "keyLabel": "#space",
+          "keyWidth": "33.84375%",
+          "isRepeatable": true
+        },
+        {
+          "codes": "3405",
+          "keyLabel": "്",
+          "keyWidth": "10.00475%"
+        },
+        {
+          "codes": "10",
+          "keyLabel": "#return",
+          "keyWidth": "23.6515%",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": "pad",
+      "keys": [
+        {
+          "codes": "-2",
+          "keyLabel": "#123",
+          "keyWidth": "11.875%",
+          "horizontalGap": "0.9375%"
+        },
+        {
+          "codes": "-6",
+          "keyLabel": "⌘",
+          "keyWidth": "11.875%"
+        },
+        {
+          "codes": "32",
+          "keyLabel": "#space",
+          "keyWidth": "33.84375%",
+          "isRepeatable": true
+        },
+        {
+          "codes": "3405",
+          "keyLabel": "്",
+          "keyWidth": "8%"
+        },
+        {
+          "codes": "10",
+          "keyLabel": "#return",
+          "keyWidth": "15.9375%",
+          "keyEdgeFlags": "right"
+        },
+        {
+          "codes": "-10",
+          "keyLabel": "Done",
+          "keyWidth": "8%",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    }
+  ]
+}

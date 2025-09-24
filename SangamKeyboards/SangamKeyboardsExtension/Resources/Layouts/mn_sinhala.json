@@ -1,0 +1,276 @@
+{
+  "keyWidth": "7.34375%",
+  "horizontalGap": "1.71875%",
+  "rows": [
+    {
+      "verticalGap": "5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "unichar": "ු",
+          "keyLabel": "",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left",
+          "popupCodes": "ුූ"
+        },
+        {
+          "unichar": "අ",
+          "keyLabel": "",
+          "popupCodes": "අආඇඈ"
+        },
+        {
+          "unichar": "ැ",
+          "keyLabel": "",
+          "popupCodes": "ැෑ"
+        },
+        {
+          "unichar": "ර",
+          "keyLabel": "",
+          "popupCodes": "ර඀ඁ"
+        },
+        {
+          "unichar": "එ",
+          "keyLabel": "",
+          "popupCodes": "එඔඕ"
+        },
+        {
+          "unichar": "හ",
+          "keyLabel": "",
+          "popupCodes": "හශ"
+        },
+        {
+          "unichar": "ම",
+          "keyLabel": "",
+          "popupCodes": "මඹ"
+        },
+        {
+          "unichar": "ස",
+          "keyLabel": "",
+          "popupCodes": "සෂ"
+        },
+        {
+          "unichar": "ද",
+          "keyLabel": "",
+          "popupCodes": "දඳ"
+        },
+        {
+          "unichar": "ච",
+          "keyLabel": "",
+          "popupCodes": "චඡ"
+        },
+        {
+          "unichar": "ඤ",
+          "keyLabel": "",
+          "keyEdgeFlags": "right",
+          "popupCodes": "ඤඥ"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "unichar": "්",
+          "keyLabel": "",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left",
+          "popupCodes": "්ෳ"
+        },
+        {
+          "unichar": "ි",
+          "keyLabel": "",
+          "popupCodes": "ිී"
+        },
+        {
+          "unichar": "ා",
+          "keyLabel": "",
+          "popupCodes": "ාෘ"
+        },
+        {
+          "unichar": "ෙ",
+          "keyLabel": "",
+          "popupCodes": "ෙෛොෝ"
+        },
+        {
+          "unichar": "ට",
+          "keyLabel": "",
+          "popupCodes": "ටඨ"
+        },
+        {
+          "unichar": "ය",
+          "keyLabel": "",
+          "popupCodes": "ය඄"
+        },
+        {
+          "unichar": "ව",
+          "keyLabel": "",
+          "popupCodes": "වළු"
+        },
+        {
+          "unichar": "න",
+          "keyLabel": "",
+          "popupCodes": "නණ"
+        },
+        {
+          "unichar": "ක",
+          "keyLabel": "",
+          "popupCodes": "කඛ"
+        },
+        {
+          "unichar": "ත",
+          "keyLabel": "",
+          "popupCodes": "තථ"
+        },
+        {
+          "codes": "3456",
+          "keyLabel": "්‍ර",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "codes": "-1",
+          "keyLabel": "",
+          "keyWidth": "11.875%",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left",
+          "isModifier": true,
+          "isShifted": false
+        },
+        {
+          "unichar": "ං",
+          "keyLabel": "",
+          "popupCodes": "ංඃ"
+        },
+        {
+          "unichar": "ජ",
+          "keyLabel": "",
+          "popupCodes": "ජඦ"
+        },
+        {
+          "unichar": "ඩ",
+          "keyLabel": "",
+          "popupCodes": "ඩඬ"
+        },
+        {
+          "unichar": "ඉ",
+          "keyLabel": "",
+          "popupCodes": "ඉඊ"
+        },
+        {
+          "unichar": "බ",
+          "keyLabel": "",
+          "popupCodes": "බභ"
+        },
+        {
+          "unichar": "ප",
+          "keyLabel": "",
+          "popupCodes": "පඵ"
+        },
+        {
+          "unichar": "ල",
+          "keyLabel": "",
+          "popupCodes": "ලළඏ"
+        },
+        {
+          "unichar": "ග",
+          "keyLabel": "",
+          "popupCodes": "ගඝඟ"
+        },
+        {
+          "codes": "-5",
+          "keyLabel": "",
+          "keyWidth": "11.875%",
+          "keyEdgeFlags": "right",
+          "isRepeatable": true
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": "phone",
+      "keys": [
+        {
+          "codes": "-2",
+          "keyLabel": "123",
+          "keyWidth": "11.875%",
+          "horizontalGap": "0.9375%"
+        },
+        {
+          "codes": "-6",
+          "keyLabel": "⌘",
+          "keyWidth": "11.875%"
+        },
+        {
+          "codes": "32",
+          "keyLabel": "#space",
+          "keyWidth": "33.84375%",
+          "isRepeatable": true
+        },
+        {
+          "unichar": ".",
+          "keyLabel": "",
+          "keyWidth": "8.5%",
+          "popupCodes": ".,?෴"
+        },
+        {
+          "codes": "10",
+          "keyLabel": "#return",
+          "keyWidth": "25.15625%",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": "pad",
+      "keys": [
+        {
+          "codes": "-2",
+          "keyLabel": "123",
+          "keyWidth": "11.875%",
+          "horizontalGap": "0.9375%"
+        },
+        {
+          "codes": "-6",
+          "keyLabel": "⌘",
+          "keyWidth": "11.875%"
+        },
+        {
+          "codes": "32",
+          "keyLabel": "#space",
+          "keyWidth": "33.84375%",
+          "isRepeatable": true
+        },
+        {
+          "unichar": ".",
+          "keyLabel": "",
+          "keyWidth": "8%",
+          "popupCodes": ".,?෴"
+        },
+        {
+          "codes": "10",
+          "keyLabel": "#return",
+          "keyWidth": "15.9375%",
+          "keyEdgeFlags": "right"
+        },
+        {
+          "codes": "-10",
+          "keyLabel": "Done",
+          "keyWidth": "8%",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    }
+  ]
+}

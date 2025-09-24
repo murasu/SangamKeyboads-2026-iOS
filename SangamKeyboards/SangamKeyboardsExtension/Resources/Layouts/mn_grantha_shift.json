@@ -1,0 +1,249 @@
+{
+  "keyWidth": "7.34375%",
+  "horizontalGap": "1.71875%",
+  "rows": [
+    {
+      "verticalGap": "5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "unichar": "𑌔",
+          "keyLabel": "𑌔",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left"
+        },
+        {
+          "unichar": "𑌐",
+          "keyLabel": "𑌐"
+        },
+        {
+          "codes": "70406",
+          "keyLabel": "𑌆"
+        },
+        {
+          "unichar": "𑌈",
+          "keyLabel": "𑌈"
+        },
+        {
+          "unichar": "𑌊",
+          "keyLabel": "𑌊"
+        },
+        {
+          "unichar": "𑌭",
+          "keyLabel": "𑌭"
+        },
+        {
+          "unichar": "𑌋",
+          "keyLabel": "𑌋",
+          "popupCodes": "𑌋𑍠"
+        },
+        {
+          "unichar": "𑌘",
+          "keyLabel": "𑌘"
+        },
+        {
+          "unichar": "𑌧",
+          "keyLabel": "𑌧"
+        },
+        {
+          "unichar": "𑌝",
+          "keyLabel": "𑌝"
+        },
+        {
+          "unichar": "𑌢",
+          "keyLabel": "𑌢",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "unichar": "𑌓",
+          "keyLabel": "𑌓",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left"
+        },
+        {
+          "unichar": "𑌏",
+          "keyLabel": "𑌏"
+        },
+        {
+          "unichar": "𑌅",
+          "keyLabel": "𑌅"
+        },
+        {
+          "unichar": "𑌇",
+          "keyLabel": "𑌇"
+        },
+        {
+          "unichar": "𑌉",
+          "keyLabel": "𑌉"
+        },
+        {
+          "unichar": "𑌫",
+          "keyLabel": "𑌫"
+        },
+        {
+          "unichar": "𑍃",
+          "keyLabel": "𑍃",
+          "popupCodes": "𑍃𑍄"
+        },
+        {
+          "unichar": "𑌖",
+          "keyLabel": "𑌖"
+        },
+        {
+          "unichar": "𑌥",
+          "keyLabel": "𑌥"
+        },
+        {
+          "unichar": "𑌛",
+          "keyLabel": "𑌛"
+        },
+        {
+          "unichar": "𑌠",
+          "keyLabel": "𑌠",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "codes": "-1",
+          "keyLabel": "",
+          "keyWidth": "11.875%",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left",
+          "isModifier": true,
+          "isShifted": true
+        },
+        {
+          "unichar": "𑌁",
+          "keyLabel": "𑌁"
+        },
+        {
+          "unichar": "𑍐",
+          "keyLabel": "𑍐"
+        },
+        {
+          "unichar": "௒",
+          "keyLabel": "𑌜𑍍𑌞"
+        },
+        {
+          "unichar": "𑌣",
+          "keyLabel": "𑌣"
+        },
+        {
+          "unichar": "௑",
+          "keyLabel": "𑌕𑍍𑌷"
+        },
+        {
+          "unichar": "𑌽",
+          "keyLabel": "𑌽"
+        },
+        {
+          "unichar": "𑌶",
+          "keyLabel": "𑌶"
+        },
+        {
+          "unichar": "𑌷",
+          "keyLabel": "𑌷"
+        },
+        {
+          "codes": "-5",
+          "keyLabel": "",
+          "keyWidth": "11.875%",
+          "keyEdgeFlags": "right",
+          "isRepeatable": true
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": "phone",
+      "keys": [
+        {
+          "codes": "-2",
+          "keyLabel": "123",
+          "keyWidth": "11.875%",
+          "horizontalGap": "0.9375%"
+        },
+        {
+          "codes": "-6",
+          "keyLabel": "⌘",
+          "keyWidth": "11.875%"
+        },
+        {
+          "codes": "32",
+          "keyLabel": "#space",
+          "keyWidth": "33.84375%",
+          "isRepeatable": true
+        },
+        {
+          "unichar": "।",
+          "keyLabel": "",
+          "keyWidth": "8.5%",
+          "popupCodes": "।॥"
+        },
+        {
+          "codes": "10",
+          "keyLabel": "#return",
+          "keyWidth": "25.15625%",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": "pad",
+      "keys": [
+        {
+          "codes": "-2",
+          "keyLabel": "123",
+          "keyWidth": "11.875%",
+          "horizontalGap": "0.9375%"
+        },
+        {
+          "codes": "-6",
+          "keyLabel": "⌘",
+          "keyWidth": "11.875%"
+        },
+        {
+          "codes": "32",
+          "keyLabel": "#space",
+          "keyWidth": "33.84375%",
+          "isRepeatable": true
+        },
+        {
+          "unichar": "।",
+          "keyLabel": "",
+          "keyWidth": "8%",
+          "popupCodes": "।॥"
+        },
+        {
+          "codes": "10",
+          "keyLabel": "#return",
+          "keyWidth": "15.9375%",
+          "keyEdgeFlags": "right"
+        },
+        {
+          "codes": "-10",
+          "keyLabel": "Done",
+          "keyWidth": "8%",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    }
+  ]
+}
