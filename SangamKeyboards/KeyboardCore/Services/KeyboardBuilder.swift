@@ -9,7 +9,7 @@ import UIKit
 
 public class KeyboardBuilder {
     
-    private static let debugMode = true // Enable debug to see what's happening
+    private static let debugMode = false // Disable debug to reduce console noise
     
     // MARK: - Color Configuration
     private struct KeyboardColors {
@@ -87,7 +87,7 @@ public class KeyboardBuilder {
         
         let mainStack = UIStackView()
         mainStack.axis = .vertical
-        mainStack.distribution = .fillProportionally
+        mainStack.distribution = .fillEqually // Changed from fillProportionally to fillEqually
         mainStack.spacing = 6
         mainStack.translatesAutoresizingMaskIntoConstraints = false
         
@@ -98,7 +98,7 @@ public class KeyboardBuilder {
             let rowView = createRowView(
                 row: row,
                 defaultKeyWidth: layout.keyWidth,
-                containerView: containerView, // Pass container view for interface style detection
+                containerView: containerView,
                 keyPressHandler: keyPressHandler
             )
             
@@ -111,100 +111,65 @@ public class KeyboardBuilder {
     private static func createRowView(
         row: KeyboardRow,
         defaultKeyWidth: String,
-        containerView: UIView, // Added for interface style detection
+        containerView: UIView,
         keyPressHandler: @escaping (KeyboardKey) -> Void
     ) -> UIView {
         
-        let rowContainer = UIView()
-        rowContainer.translatesAutoresizingMaskIntoConstraints = false
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .fill
+        stackView.spacing = 3
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 4)
+        stackView.isLayoutMarginsRelativeArrangement = true
         
-        // Calculate the total width needed and available space
-        let horizontalMargin: CGFloat = 8 // Total margin (4 on each side)
-        let keySpacing: CGFloat = 3 // Space between keys
-        let totalSpacing = keySpacing * CGFloat(row.keys.count - 1)
-        
-        var previousButton: UIView? = nil
-        var buttonConstraints: [NSLayoutConstraint] = []
-        
-        // Calculate width percentages and normalize them
+        // Get raw widths from JSON (don't normalize to 100%)
         var keyWidths: [CGFloat] = []
-        var totalRequestedWidth: CGFloat = 0
         
         for key in row.keys {
             let keyWidthString = key.keyWidth ?? defaultKeyWidth
             let width = parsePercentage(keyWidthString)
             keyWidths.append(width)
-            totalRequestedWidth += width
         }
         
-        // Normalize widths to fit within available space
-        let availableWidth: CGFloat = 100 // Percentage
-        let scaleFactor = totalRequestedWidth > 0 ? availableWidth / totalRequestedWidth : 1.0
+        // Don't normalize - use the actual percentages from JSON
+        // The JSON percentages are designed to work with spacing/margins
         
-        for i in 0..<keyWidths.count {
-            keyWidths[i] = keyWidths[i] * scaleFactor
-        }
+        var widthConstraints: [NSLayoutConstraint] = []
         
+        // Create buttons and add to stack
         for (index, key) in row.keys.enumerated() {
             let button = createKeyButton(key: key, containerView: containerView, handler: keyPressHandler)
-            rowContainer.addSubview(button)
+            stackView.addArrangedSubview(button)
             
-            let keyWidthPercentage = keyWidths[index]
-            
-            // Vertical constraints (full height of row)
-            buttonConstraints.append(contentsOf: [
-                button.topAnchor.constraint(equalTo: rowContainer.topAnchor),
-                button.bottomAnchor.constraint(equalTo: rowContainer.bottomAnchor)
-            ])
-            
-            // Width constraint as percentage of available width (minus margins and spacing)
-            let widthConstraint = button.widthAnchor.constraint(
-                equalTo: rowContainer.widthAnchor,
-                multiplier: keyWidthPercentage / 100.0,
-                constant: -(horizontalMargin + totalSpacing) * (keyWidthPercentage / 100.0)
-            )
-            buttonConstraints.append(widthConstraint)
-            
-            // Horizontal positioning
+            // Set width constraint relative to the first button
             if index == 0 {
-                // First button: align to leading edge with margin
-                buttonConstraints.append(
-                    button.leadingAnchor.constraint(equalTo: rowContainer.leadingAnchor, constant: horizontalMargin / 2)
-                )
+                // First button - no relative constraint needed
+                continue
             } else {
-                // Subsequent buttons: position after previous with spacing
-                buttonConstraints.append(
-                    button.leadingAnchor.constraint(equalTo: previousButton!.trailingAnchor, constant: keySpacing)
+                // Calculate width ratio relative to first button
+                let firstButtonWidth = keyWidths[0]
+                let currentButtonWidth = keyWidths[index]
+                let ratio = currentButtonWidth / firstButtonWidth
+                
+                let firstButton = stackView.arrangedSubviews[0]
+                let widthConstraint = button.widthAnchor.constraint(
+                    equalTo: firstButton.widthAnchor,
+                    multiplier: ratio
                 )
+                widthConstraint.priority = UILayoutPriority(999)
+                widthConstraints.append(widthConstraint)
             }
-            
-            // Last button: ensure it doesn't exceed trailing edge
-            if index == row.keys.count - 1 {
-                let trailingConstraint = button.trailingAnchor.constraint(
-                    lessThanOrEqualTo: rowContainer.trailingAnchor,
-                    constant: -horizontalMargin / 2
-                )
-                trailingConstraint.priority = UILayoutPriority(999)
-                buttonConstraints.append(trailingConstraint)
-            }
-            
-            previousButton = button
         }
         
-        // Set row height
-        let rowHeight = parsePixelValue(row.keyHeight, defaultValue: 40.0)
-        buttonConstraints.append(
-            rowContainer.heightAnchor.constraint(equalToConstant: rowHeight)
-        )
+        NSLayoutConstraint.activate(widthConstraints)
         
-        NSLayoutConstraint.activate(buttonConstraints)
-        
-        return rowContainer
+        return stackView
     }
     
     private static func createKeyButton(
         key: KeyboardKey,
-        containerView: UIView, // Added for interface style detection
+        containerView: UIView,
         handler: @escaping (KeyboardKey) -> Void
     ) -> UIButton {
         
@@ -316,7 +281,7 @@ public class KeyboardBuilder {
         case -1: // Shift - use SF Symbol
             if let shiftImage = UIImage(systemName: "shift") {
                 button.setImage(shiftImage, for: .normal)
-                button.tintColor = textColor // Use interface style appropriate color
+                button.tintColor = textColor
                 button.imageView?.contentMode = .scaleAspectFit
                 
                 // Set appropriate size for the symbol
@@ -334,7 +299,7 @@ public class KeyboardBuilder {
         case -5: // Delete - use SF Symbol
             if let deleteImage = UIImage(systemName: "delete.left") {
                 button.setImage(deleteImage, for: .normal)
-                button.tintColor = textColor // Use interface style appropriate color
+                button.tintColor = textColor
                 button.imageView?.contentMode = .scaleAspectFit
                 
                 // Set appropriate size for the symbol
@@ -354,7 +319,7 @@ public class KeyboardBuilder {
             let displayText = getDisplayTextForKey(key)
             button.setTitle(displayText, for: .normal)
             button.titleLabel?.font = UIFont.systemFont(ofSize: getFontSize(for: key), weight: .medium)
-            button.setTitleColor(textColor, for: .normal) // Use interface style appropriate color
+            button.setTitleColor(textColor, for: .normal)
             
             if debugMode {
                 print("Set text '\(displayText)' for key \(key.keyCode) with color \(textColor.description)")
@@ -395,7 +360,7 @@ public class KeyboardBuilder {
         
         if let shiftImage = UIImage(systemName: symbolName) {
             button.setImage(shiftImage, for: .normal)
-            button.tintColor = textColor // Use interface style appropriate color
+            button.tintColor = textColor
             
             // Set appropriate size for the symbol
             let symbolConfig = UIImage.SymbolConfiguration(pointSize: 18, weight: .medium)

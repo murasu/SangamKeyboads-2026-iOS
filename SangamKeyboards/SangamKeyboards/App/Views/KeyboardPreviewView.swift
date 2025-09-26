@@ -57,7 +57,7 @@ struct KeyboardPreviewView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .background(Color(UIColor.systemGray5))
                     .cornerRadius(8)
-                    .font(.system(size: 16))//, family: .monospaced))
+                    .font(.system(size: 16))
             }
             
             // Keyboard State Display
@@ -75,7 +75,7 @@ struct KeyboardPreviewView: View {
                 .buttonStyle(.bordered)
             }
             
-            // Embedded Keyboard
+            // Embedded Keyboard - Updated height for better visibility
             KeyboardPreviewContainer(
                 selectedLanguage: $selectedLanguage,
                 keyboardState: $keyboardState,
@@ -92,8 +92,8 @@ struct KeyboardPreviewView: View {
                     }
                 }
             )
-            .frame(height: 200) // Reduced from 220, remove extra padding
-            .clipped() // Remove any overflow padding
+            .frame(height: keyboardPreviewHeight)
+            .clipped()
             
             Spacer()
         }
@@ -112,6 +112,35 @@ struct KeyboardPreviewView: View {
             return "Symbols"
         case .shiftedSymbols:
             return "Shifted Symbols"
+        }
+    }
+    
+    // Calculate appropriate preview height based on device
+    private var keyboardPreviewHeight: CGFloat {
+        let screenWidth = UIScreen.main.bounds.width
+        let screenHeight = UIScreen.main.bounds.height
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return 264 // iPad portrait height
+        } else {
+            // iPhone - scale based on screen size
+            let screenSize = max(screenWidth, screenHeight)
+            
+            if screenSize >= 926 { // iPhone 14 Pro Max, 15 Pro Max, etc.
+                return 291
+            } else if screenSize >= 896 { // iPhone 11, 12, 13, 14, XR, etc.
+                return 291
+            } else if screenSize >= 844 { // iPhone 12 mini, 13 mini
+                return 291
+            } else if screenSize >= 812 { // iPhone X, XS, 11 Pro
+                return 291
+            } else if screenSize >= 736 { // iPhone 6+, 7+, 8+
+                return 271
+            } else if screenSize >= 667 { // iPhone 6, 7, 8, SE 2nd/3rd gen
+                return 258
+            } else { // iPhone SE 1st gen and older
+                return 253
+            }
         }
     }
 }
@@ -202,11 +231,11 @@ class KeyboardPreviewViewController: UIViewController {
     }
     
     private func setupUI() {
-        view.backgroundColor = UIColor.clear // Remove background
+        view.backgroundColor = UIColor.clear
         
         keyboardContainer = UIView()
         keyboardContainer.translatesAutoresizingMaskIntoConstraints = false
-        keyboardContainer.backgroundColor = UIColor.clear // Remove gray background
+        keyboardContainer.backgroundColor = UIColor.clear
         view.addSubview(keyboardContainer)
         
         NSLayoutConstraint.activate([

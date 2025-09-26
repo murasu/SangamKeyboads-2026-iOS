@@ -14,8 +14,6 @@ class KeyboardViewController: UIInputViewController {
     private var logicController: KeyboardLogicController!
     
     // MARK: - UI Components
-    private var statusLabel: UILabel!
-    private var compositionLabel: UILabel!
     private var keyboardContainer: UIView!
     private var currentKeyboardView: UIView?
     
@@ -44,7 +42,7 @@ class KeyboardViewController: UIInputViewController {
         // Initialize with Tamil as default - you can change this or make it configurable
         logicController = KeyboardLogicController(
             language: .tamil,
-            appGroupIdentifier: "group.com.murasu.SangamKeyboards" // Update with your app group
+            appGroupIdentifier: "group.com.murasu.Sangam.keyboardsharing" // Update with your app group
         )
         logicController.delegate = self
         logicController.themeObserver = self
@@ -53,55 +51,18 @@ class KeyboardViewController: UIInputViewController {
     private func setupUI() {
         view.backgroundColor = UIColor.systemGray5
         
-        // Status display
-        statusLabel = UILabel()
-        statusLabel.textAlignment = .center
-        statusLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        statusLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(statusLabel)
-        
-        // Composition display
-        compositionLabel = UILabel()
-        compositionLabel.textAlignment = .center
-        compositionLabel.font = UIFont.systemFont(ofSize: 18)
-        compositionLabel.numberOfLines = 0
-        compositionLabel.backgroundColor = UIColor.systemGray6
-        compositionLabel.layer.cornerRadius = 8
-        compositionLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(compositionLabel)
-        
-        // Keyboard container
+        // Keyboard container - takes full space
         keyboardContainer = UIView()
         keyboardContainer.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(keyboardContainer)
         
-        // Control buttons (for testing - remove in production)
-        let controlStack = createControlButtons()
-        view.addSubview(controlStack)
-        
-        // Layout constraints
+        // Layout constraints - keyboard fills entire view
         NSLayoutConstraint.activate([
-            statusLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 8),
-            statusLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            statusLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            
-            compositionLabel.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 8),
-            compositionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            compositionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            compositionLabel.heightAnchor.constraint(equalToConstant: 40),
-            
-            keyboardContainer.topAnchor.constraint(equalTo: compositionLabel.bottomAnchor, constant: 8),
-            keyboardContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
-            keyboardContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
-            keyboardContainer.heightAnchor.constraint(equalToConstant: 180),
-            
-            controlStack.topAnchor.constraint(equalTo: keyboardContainer.bottomAnchor, constant: 8),
-            controlStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            controlStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            controlStack.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor, constant: -8)
+            keyboardContainer.topAnchor.constraint(equalTo: view.topAnchor),
+            keyboardContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            keyboardContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            keyboardContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-        
-        updateDisplay()
     }
     
     private func buildKeyboard() {
@@ -134,7 +95,6 @@ class KeyboardViewController: UIInputViewController {
         
         // Update shift key appearance based on current state
         updateShiftKeyAppearance()
-        updateStatusLabel()
     }
     
     private func updateShiftKeyAppearance() {
@@ -147,72 +107,65 @@ class KeyboardViewController: UIInputViewController {
         )
     }
     
-    private func updateStatusLabel() {
-        let stateText = logicController.getStateDisplayText()
-        statusLabel.text = "Tamil - \(stateText)"
-    }
-    
-    private func updateDisplay() {
-        let composition = logicController.currentComposition
-        compositionLabel.text = composition.isEmpty ?
-            "Composition: (empty)" :
-            "Composition: \(composition)"
-    }
-    
-    // MARK: - Control Buttons (for testing - remove in production)
-    private func createControlButtons() -> UIStackView {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.distribution = .fillEqually
-        stack.spacing = 8
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        
-        let clearButton = createControlButton(title: "Clear") { [weak self] in
-            self?.logicController.clearComposition()
-            self?.updateDisplay()
-        }
-        
-        let switchButton = createControlButton(title: "Switch Lang") { [weak self] in
-            // Example: Switch between Tamil and Tamil Anjal
-            let newLanguage: LanguageId = self?.logicController.currentLanguage == .tamil ? .tamilAnjal : .tamil
-            self?.logicController.setLanguage(newLanguage)
-        }
-        
-        stack.addArrangedSubview(clearButton)
-        stack.addArrangedSubview(switchButton)
-        
-        return stack
-    }
-    
-    private func createControlButton(title: String, action: @escaping () -> Void) -> UIButton {
-        let button = UIButton(type: .system)
-        button.setTitle(title, for: .normal)
-        button.backgroundColor = UIColor.systemBlue.withAlphaComponent(0.1)
-        button.layer.cornerRadius = 8
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.systemBlue.cgColor
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        
-        button.addAction(UIAction { _ in action() }, for: .touchUpInside)
-        
-        return button
-    }
-    
     override func updateViewConstraints() {
         super.updateViewConstraints()
         
-        // Set minimum height instead of fixed height
-        let minHeightConstraint = NSLayoutConstraint(
+        // Remove any existing height constraints to avoid conflicts
+        view.constraints.forEach { constraint in
+            if constraint.firstAttribute == .height && constraint.firstItem === view {
+                view.removeConstraint(constraint)
+            }
+        }
+        
+        // Set proper keyboard height based on device size and orientation
+        let keyboardHeight = getKeyboardHeight()
+        
+        let heightConstraint = NSLayoutConstraint(
             item: view!,
             attribute: .height,
-            relatedBy: .greaterThanOrEqual,
+            relatedBy: .equal,
             toItem: nil,
             attribute: .notAnAttribute,
             multiplier: 0.0,
-            constant: 250
+            constant: keyboardHeight
         )
-        minHeightConstraint.priority = UILayoutPriority(999)
-        view.addConstraint(minHeightConstraint)
+        heightConstraint.priority = UILayoutPriority(999)
+        heightConstraint.identifier = "KeyboardHeight"
+        view.addConstraint(heightConstraint)
+    }
+    
+    private func getKeyboardHeight() -> CGFloat {
+        let screenWidth = UIScreen.main.bounds.width
+        let screenHeight = UIScreen.main.bounds.height
+        let isLandscape = traitCollection.verticalSizeClass == .compact
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            // iPad heights
+            if isLandscape {
+                return 398 // iPad landscape
+            } else {
+                return 264 // iPad portrait
+            }
+        } else {
+            // iPhone heights - determine device type by screen dimensions
+            let screenSize = max(screenWidth, screenHeight)
+            
+            if screenSize >= 926 { // iPhone 14 Pro Max, 15 Pro Max, etc.
+                return isLandscape ? 172 : 291
+            } else if screenSize >= 896 { // iPhone 11, 12, 13, 14, XR, etc.
+                return isLandscape ? 172 : 291
+            } else if screenSize >= 844 { // iPhone 12 mini, 13 mini
+                return isLandscape ? 172 : 291
+            } else if screenSize >= 812 { // iPhone X, XS, 11 Pro
+                return isLandscape ? 172 : 291
+            } else if screenSize >= 736 { // iPhone 6+, 7+, 8+
+                return isLandscape ? 172 : 271
+            } else if screenSize >= 667 { // iPhone 6, 7, 8, SE 2nd/3rd gen
+                return isLandscape ? 172 : 258
+            } else { // iPhone SE 1st gen and older
+                return isLandscape ? 172 : 253
+            }
+        }
     }
 }
 
@@ -220,14 +173,12 @@ class KeyboardViewController: UIInputViewController {
 extension KeyboardViewController: KeyboardLogicDelegate {
     func insertText(_ text: String) {
         textDocumentProxy.insertText(text)
-        updateDisplay()
     }
     
     func deleteBackward(count: Int) {
         for _ in 0..<count {
             textDocumentProxy.deleteBackward()
         }
-        updateDisplay()
     }
     
     func performHapticFeedback(style: UIImpactFeedbackGenerator.FeedbackStyle) {

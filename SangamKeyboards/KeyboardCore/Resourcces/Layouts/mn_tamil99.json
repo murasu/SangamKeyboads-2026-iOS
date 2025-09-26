@@ -117,7 +117,7 @@
       "keys": [
         {
           "codes": "-1",
-          "keyLabel": "⬆︎",
+          "keyLabel": "⬆️",
           "keyWidth": "11.875%",
           "horizontalGap": "0.9375%",
           "keyEdgeFlags": "left",
@@ -187,7 +187,7 @@
         {
           "codes": "32",
           "keyLabel": "#space",
-          "keyWidth": "33.84375%",
+          "keyWidth": "42.59425%",
           "isRepeatable": true
         },
         {
@@ -241,3 +241,4 @@
     }
   ]
 }
+
