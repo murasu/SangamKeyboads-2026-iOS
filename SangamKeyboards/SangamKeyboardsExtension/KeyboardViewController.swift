@@ -35,7 +35,7 @@ class KeyboardViewController: UIInputViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTranslators()
-        setupLayout()
+        //setupLayout()
         setupUI()
     }
     
@@ -131,7 +131,58 @@ class KeyboardViewController: UIInputViewController {
             keyboardView.bottomAnchor.constraint(equalTo: keyboardContainer.bottomAnchor)
         ])
         
+        // Update shift key appearance based on current state
+        KeyboardBuilder.updateAllShiftKeys(
+            in: keyboardView,
+            shifted: keyboardState == .shifted,
+            locked: isShiftLocked
+        )
+        
         updateStatusLabel()
+    }
+
+    private func handleShift() {
+        let previousState = keyboardState
+        let wasLocked = isShiftLocked
+        
+        switch keyboardState {
+        case .normal:
+            keyboardState = .shifted
+            isShiftLocked = false
+            
+        case .shifted:
+            if isShiftLocked {
+                keyboardState = .normal
+                isShiftLocked = false
+            } else {
+                // Double-tap shift = caps lock
+                isShiftLocked = true
+            }
+            
+        case .symbols:
+            if hasShiftedSymbolsLayout(for: currentLanguage) {
+                keyboardState = .shiftedSymbols
+            }
+            
+        case .shiftedSymbols:
+            keyboardState = .symbols
+        }
+        
+        // Only rebuild if we're changing layout types
+        if (previousState == .normal || previousState == .shifted) &&
+           (keyboardState == .symbols || keyboardState == .shiftedSymbols) ||
+           (previousState == .symbols || previousState == .shiftedSymbols) &&
+           (keyboardState == .normal || keyboardState == .shifted) {
+            buildTamilKeyboard()
+        } else {
+            // Just update the shift key appearance without rebuilding
+            KeyboardBuilder.updateAllShiftKeys(
+                in: keyboardContainer,
+                shifted: keyboardState == .shifted,
+                locked: isShiftLocked
+            )
+            updateStatusLabel()
+        }
     }
     
     private func createControlButtons() -> UIStackView {
@@ -217,6 +268,7 @@ class KeyboardViewController: UIInputViewController {
         }
     }
 
+    /*
     private func handleShift() {
         switch keyboardState {
         case .normal:
@@ -242,7 +294,7 @@ class KeyboardViewController: UIInputViewController {
             keyboardState = .symbols
         }
         buildTamilKeyboard()
-    }
+    } */
     
     private func hasShiftedSymbolsLayout(for languageId: LanguageId) -> Bool {
         // Languages that have shifted symbols layouts
@@ -369,6 +421,23 @@ class KeyboardViewController: UIInputViewController {
     override func updateViewConstraints() {
         super.updateViewConstraints()
         
+        // Set minimum height instead of fixed height
+        let minHeightConstraint = NSLayoutConstraint(
+            item: view!,
+            attribute: .height,
+            relatedBy: .greaterThanOrEqual,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 0.0,
+            constant: 250
+        )
+        minHeightConstraint.priority = UILayoutPriority(999) // High but not required
+        view.addConstraint(minHeightConstraint)
+    }
+    /*
+    override func updateViewConstraints() {
+        super.updateViewConstraints()
+        
         let heightConstraint = NSLayoutConstraint(
             item: view!,
             attribute: .height,
@@ -379,6 +448,6 @@ class KeyboardViewController: UIInputViewController {
             constant: 300 // Increased for full Tamil layout
         )
         view.addConstraint(heightConstraint)
-    }
+    }*/
 }
 

@@ -59,12 +59,14 @@ public class LayoutParser {
             }
         }
         
+        // Use the current bundle (works for both app and extension)
+        let bundle = Bundle(for: LayoutParser.self)
+        //guard let url = bundle.url(forResource: fileName, withExtension: "json") else {
         guard let url = Bundle.main.url(forResource: fileName, withExtension: "json") else {
-            // Fallback: if shifted symbols doesn't exist, use regular symbols
             if state == .shiftedSymbols {
-                return loadLayout(for: languageId, state: KeyboardState.symbols) // Use full type name
+                return loadLayout(for: languageId, state: KeyboardState.symbols)
             }
-            print("Could not load layout: \(fileName).json")
+            print("Could not load layout: \(fileName).json from bundle: \(bundle.bundlePath)")
             return nil
         }
         
