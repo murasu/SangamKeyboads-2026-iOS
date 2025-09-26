@@ -1,0 +1,271 @@
+{
+  "keyWidth": "7.34375%",
+  "horizontalGap": "1.71875%",
+  "rows": [
+    {
+      "verticalGap": "5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "codes": "3276",
+          "keyLabel": "ೌ",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left",
+          "popupCodes": "ೌಔ"
+        },
+        {
+          "codes": "3272",
+          "keyLabel": "ೈ",
+          "popupCodes": "ೈಐ"
+        },
+        {
+          "codes": "3262",
+          "keyLabel": "ಾ",
+          "popupCodes": "ಾಆ"
+        },
+        {
+          "codes": "3264",
+          "keyLabel": "ೀ",
+          "popupCodes": "ೀಈ"
+        },
+        {
+          "codes": "3266",
+          "keyLabel": "ೂ",
+          "popupCodes": "ೂಊ"
+        },
+        {
+          "codes": "3244",
+          "keyLabel": "ಬ",
+          "popupCodes": "ಬಭ"
+        },
+        {
+          "codes": "3257",
+          "keyLabel": "ಹ"
+        },
+        {
+          "codes": "3223",
+          "keyLabel": "ಗ",
+          "popupCodes": "ಗಘ"
+        },
+        {
+          "codes": "3238",
+          "keyLabel": "ದ",
+          "popupCodes": "ದಧ"
+        },
+        {
+          "codes": "3228",
+          "keyLabel": "ಜ",
+          "popupCodes": "ಜಝಞ"
+        },
+        {
+          "codes": "3233",
+          "keyLabel": "ಡ",
+          "keyEdgeFlags": "right",
+          "popupCodes": "ಡಢ"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "codes": "3275",
+          "keyLabel": "ೋ",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left",
+          "popupCodes": "ೋಓ"
+        },
+        {
+          "codes": "3271",
+          "keyLabel": "ೇ",
+          "popupCodes": "ೇಏ"
+        },
+        {
+          "codes": "3202",
+          "keyLabel": "ಂ",
+          "popupCodes": "ಂಃ"
+        },
+        {
+          "codes": "3263",
+          "keyLabel": "ಿ",
+          "popupCodes": "ಿಇ"
+        },
+        {
+          "codes": "3265",
+          "keyLabel": "ು",
+          "popupCodes": "ುಉ"
+        },
+        {
+          "codes": "3242",
+          "keyLabel": "ಪ",
+          "popupCodes": "ಪಫ"
+        },
+        {
+          "codes": "3248",
+          "keyLabel": "ರ",
+          "popupCodes": "ರಱಋೃೄ"
+        },
+        {
+          "codes": "3221",
+          "keyLabel": "ಕ",
+          "popupCodes": "ಕಖ"
+        },
+        {
+          "codes": "3236",
+          "keyLabel": "ತ",
+          "popupCodes": "ತಥ"
+        },
+        {
+          "codes": "3226",
+          "keyLabel": "ಚ",
+          "popupCodes": "ಚಛ"
+        },
+        {
+          "codes": "3231",
+          "keyLabel": "ಟ",
+          "keyEdgeFlags": "right",
+          "popupCodes": "ಟಠ"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "codes": "-1",
+          "keyLabel": "⇧",
+          "keyWidth": "11.875%",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left",
+          "isModifier": true,
+          "isShifted": false
+        },
+        {
+          "codes": "3274",
+          "keyLabel": "ೊ",
+          "popupCodes": "ೊಒ"
+        },
+        {
+          "codes": "3270",
+          "keyLabel": "ೆ",
+          "popupCodes": "ೆಎ"
+        },
+        {
+          "codes": "3246",
+          "keyLabel": "ಮ"
+        },
+        {
+          "codes": "3240",
+          "keyLabel": "ನ",
+          "popupCodes": "ನಣಙಞ"
+        },
+        {
+          "codes": "3253",
+          "keyLabel": "ವ"
+        },
+        {
+          "codes": "3250",
+          "keyLabel": "ಲ",
+          "popupCodes": "ಲಳಌ"
+        },
+        {
+          "codes": "3256",
+          "keyLabel": "ಸ",
+          "popupCodes": "ಸಷಶ"
+        },
+        {
+          "codes": "3247",
+          "keyLabel": "ಯ"
+        },
+        {
+          "codes": "-5",
+          "keyLabel": "⌫",
+          "keyWidth": "11.875%",
+          "keyEdgeFlags": "right",
+          "isRepeatable": true
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": "phone",
+      "keys": [
+        {
+          "codes": "-2",
+          "keyLabel": "#123",
+          "keyWidth": "11.875%",
+          "horizontalGap": "0.9375%"
+        },
+        {
+          "codes": "-6",
+          "keyLabel": "⌘",
+          "keyWidth": "11.875%"
+        },
+        {
+          "codes": "32",
+          "keyLabel": "#space",
+          "keyWidth": "34.84375%",
+          "isRepeatable": true
+        },
+        {
+          "codes": "3277",
+          "keyLabel": "್",
+          "keyWidth": "7.96875%"
+        },
+        {
+          "codes": "10",
+          "keyLabel": "#return",
+          "keyWidth": "24.6515%",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": "pad",
+      "keys": [
+        {
+          "codes": "-2",
+          "keyLabel": "123",
+          "keyWidth": "11.875%",
+          "horizontalGap": "0.9375%"
+        },
+        {
+          "codes": "-6",
+          "keyLabel": "⌘",
+          "keyWidth": "11.875%"
+        },
+        {
+          "codes": "32",
+          "keyLabel": "#space",
+          "keyWidth": "33.84375%",
+          "isRepeatable": true
+        },
+        {
+          "codes": "3277",
+          "keyLabel": "್",
+          "keyWidth": "8%"
+        },
+        {
+          "codes": "10",
+          "keyLabel": "#return",
+          "keyWidth": "15.9375%",
+          "keyEdgeFlags": "right"
+        },
+        {
+          "codes": "-10",
+          "keyLabel": "Done",
+          "keyWidth": "8%",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    }
+  ]
+}

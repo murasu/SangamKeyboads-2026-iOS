@@ -5,48 +5,49 @@
 //  Created by Muthu Nedumaran on 24/09/2025.
 //
 
-// Updated to use actual Tamil99 layout from XML
-
 import UIKit
 import KeyboardCore
 
 class KeyboardViewController: UIInputViewController {
-    // MARK: - Keyboard State
-    private var keyboardState: KeyboardState = .normal
-    private var isShiftLocked = false
     
-    // MARK: - Current Language
-    private var currentLanguage: LanguageId = .tamil
+    // MARK: - Logic Controller
+    private var logicController: KeyboardLogicController!
     
-    // MARK: - Test Components
-    private var tamil99Translator: Tamil99KeyTranslator!
-    private var tamilAnjalTranslator: TamilAnjalKeyTranslator!
-    private var currentTranslator: KeyTranslator!
-    private var currentComposition = ""
-    
-    // MARK: - Layout
-    private var currentLayout: KeyboardLayout!
-    
-    // MARK: - UI
+    // MARK: - UI Components
     private var statusLabel: UILabel!
     private var compositionLabel: UILabel!
     private var keyboardContainer: UIView!
+    private var currentKeyboardView: UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTranslators()
-        //setupLayout()
+        setupLogicController()
         setupUI()
+        buildKeyboard()
     }
     
-    private func setupTranslators() {
-        tamil99Translator = Tamil99KeyTranslator()
-        tamilAnjalTranslator = TamilAnjalKeyTranslator()
-        currentTranslator = tamil99Translator // Start with Tamil99
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        // Update keyboard colors when interface style changes
+        if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection),
+           let keyboardView = currentKeyboardView {
+            KeyboardBuilder.updateKeyboardColors(
+                in: keyboardView,
+                interfaceStyle: traitCollection.userInterfaceStyle
+            )
+        }
     }
     
-    private func setupLayout() {
-        currentLayout = LayoutParser.loadLayout(for: .tamil)
+    // MARK: - Setup Methods
+    private func setupLogicController() {
+        // Initialize with Tamil as default - you can change this or make it configurable
+        logicController = KeyboardLogicController(
+            language: .tamil,
+            appGroupIdentifier: "group.com.murasu.SangamKeyboards" // Update with your app group
+        )
+        logicController.delegate = self
+        logicController.themeObserver = self
     }
     
     private func setupUI() {
@@ -54,7 +55,6 @@ class KeyboardViewController: UIInputViewController {
         
         // Status display
         statusLabel = UILabel()
-        statusLabel.text = "Tamil99 Layout Test"
         statusLabel.textAlignment = .center
         statusLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         statusLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -62,7 +62,6 @@ class KeyboardViewController: UIInputViewController {
         
         // Composition display
         compositionLabel = UILabel()
-        compositionLabel.text = "Composition: (empty)"
         compositionLabel.textAlignment = .center
         compositionLabel.font = UIFont.systemFont(ofSize: 18)
         compositionLabel.numberOfLines = 0
@@ -76,7 +75,7 @@ class KeyboardViewController: UIInputViewController {
         keyboardContainer.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(keyboardContainer)
         
-        // Control buttons
+        // Control buttons (for testing - remove in production)
         let controlStack = createControlButtons()
         view.addSubview(controlStack)
         
@@ -102,27 +101,29 @@ class KeyboardViewController: UIInputViewController {
             controlStack.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor, constant: -8)
         ])
         
-        // Build the Tamil keyboard
-        buildTamilKeyboard()
         updateDisplay()
     }
     
-    private func buildTamilKeyboard() {
-        keyboardContainer.subviews.forEach { $0.removeFromSuperview() }
+    private func buildKeyboard() {
+        // Remove existing keyboard view
+        currentKeyboardView?.removeFromSuperview()
+        currentKeyboardView = nil
         
-        guard let layout = LayoutParser.loadLayout(for: .tamil, state: keyboardState) else {
-            print("Failed to load layout for state: \(keyboardState)")
+        guard let layout = logicController.getCurrentLayout() else {
+            print("Failed to get layout from logic controller")
             return
         }
         
+        // Build new keyboard view
         let keyboardView = KeyboardBuilder.buildKeyboard(
             layout: layout,
-            containerView: keyboardContainer  // This parameter is now required
+            containerView: keyboardContainer
         ) { [weak self] key in
-            self?.handleKeyPress(key)
+            self?.logicController.handleKeyPress(key)
         }
         
         keyboardContainer.addSubview(keyboardView)
+        currentKeyboardView = keyboardView
         
         NSLayoutConstraint.activate([
             keyboardView.topAnchor.constraint(equalTo: keyboardContainer.topAnchor),
@@ -132,59 +133,33 @@ class KeyboardViewController: UIInputViewController {
         ])
         
         // Update shift key appearance based on current state
-        KeyboardBuilder.updateAllShiftKeys(
-            in: keyboardView,
-            shifted: keyboardState == .shifted,
-            locked: isShiftLocked
-        )
-        
+        updateShiftKeyAppearance()
         updateStatusLabel()
     }
-
-    private func handleShift() {
-        let previousState = keyboardState
-        let wasLocked = isShiftLocked
+    
+    private func updateShiftKeyAppearance() {
+        guard let keyboardView = currentKeyboardView else { return }
         
-        switch keyboardState {
-        case .normal:
-            keyboardState = .shifted
-            isShiftLocked = false
-            
-        case .shifted:
-            if isShiftLocked {
-                keyboardState = .normal
-                isShiftLocked = false
-            } else {
-                // Double-tap shift = caps lock
-                isShiftLocked = true
-            }
-            
-        case .symbols:
-            if hasShiftedSymbolsLayout(for: currentLanguage) {
-                keyboardState = .shiftedSymbols
-            }
-            
-        case .shiftedSymbols:
-            keyboardState = .symbols
-        }
-        
-        // Only rebuild if we're changing layout types
-        if (previousState == .normal || previousState == .shifted) &&
-           (keyboardState == .symbols || keyboardState == .shiftedSymbols) ||
-           (previousState == .symbols || previousState == .shiftedSymbols) &&
-           (keyboardState == .normal || keyboardState == .shifted) {
-            buildTamilKeyboard()
-        } else {
-            // Just update the shift key appearance without rebuilding
-            KeyboardBuilder.updateAllShiftKeys(
-                in: keyboardContainer,
-                shifted: keyboardState == .shifted,
-                locked: isShiftLocked
-            )
-            updateStatusLabel()
-        }
+        KeyboardBuilder.updateAllShiftKeys(
+            in: keyboardView,
+            shifted: logicController.keyboardState == .shifted,
+            locked: logicController.isShiftLocked
+        )
     }
     
+    private func updateStatusLabel() {
+        let stateText = logicController.getStateDisplayText()
+        statusLabel.text = "Tamil - \(stateText)"
+    }
+    
+    private func updateDisplay() {
+        let composition = logicController.currentComposition
+        compositionLabel.text = composition.isEmpty ?
+            "Composition: (empty)" :
+            "Composition: \(composition)"
+    }
+    
+    // MARK: - Control Buttons (for testing - remove in production)
     private func createControlButtons() -> UIStackView {
         let stack = UIStackView()
         stack.axis = .horizontal
@@ -193,11 +168,14 @@ class KeyboardViewController: UIInputViewController {
         stack.translatesAutoresizingMaskIntoConstraints = false
         
         let clearButton = createControlButton(title: "Clear") { [weak self] in
-            self?.clearComposition()
+            self?.logicController.clearComposition()
+            self?.updateDisplay()
         }
         
-        let switchButton = createControlButton(title: "Switch Mode") { [weak self] in
-            self?.switchTranslatorMode()
+        let switchButton = createControlButton(title: "Switch Lang") { [weak self] in
+            // Example: Switch between Tamil and Tamil Anjal
+            let newLanguage: LanguageId = self?.logicController.currentLanguage == .tamil ? .tamilAnjal : .tamil
+            self?.logicController.setLanguage(newLanguage)
         }
         
         stack.addArrangedSubview(clearButton)
@@ -220,176 +198,6 @@ class KeyboardViewController: UIInputViewController {
         return button
     }
     
-    // MARK: - Key Handling
-    
-    private func handleKeyPress(_ key: KeyboardKey) {
-        let keyCode = key.keyCode
-        
-        switch keyCode {
-        case -1: // Shift
-            handleShift()
-            return
-        case -2: // Mode change (123/ABC)
-            handleModeChange()
-            return
-        case -5: // Delete
-            handleDelete()
-            // Auto-unshift after delete (standard behavior)
-            if keyboardState == .shifted && !isShiftLocked {
-                keyboardState = .normal
-                buildTamilKeyboard()
-            }
-            return
-        case -6: // Globe
-            advanceToNextInputMode()
-            return
-        case 32: // Space
-            handleSpace()
-            // Auto-unshift after space
-            if keyboardState == .shifted && !isShiftLocked {
-                keyboardState = .normal
-                buildTamilKeyboard()
-            }
-            return
-        case 10: // Return
-            handleReturn()
-            return
-        default:
-            break
-        }
-        
-        // Handle character input
-        handleCharacterInput(keyCode: keyCode, label: key.keyLabel)
-        
-        // Auto-unshift after character input (standard behavior)
-        if keyboardState == .shifted && !isShiftLocked {
-            keyboardState = .normal
-            buildTamilKeyboard()
-        }
-    }
-    
-    private func hasShiftedSymbolsLayout(for languageId: LanguageId) -> Bool {
-        // Languages that have shifted symbols layouts
-        let languagesWithShiftedSymbols: Set<LanguageId> = [
-            .punjabi, .hindi, .bengali, .gujarati
-            // Add other languages that have symbols_shift layouts
-        ]
-        return languagesWithShiftedSymbols.contains(languageId)
-    }
-
-    private func handleModeChange() {
-        switch keyboardState {
-        case .normal, .shifted:
-            keyboardState = .symbols
-        case .symbols:
-            // Check if this language has shifted symbols
-            if hasShiftedSymbolsLayout(for: currentLanguage) {
-                keyboardState = .shiftedSymbols
-            } else {
-                keyboardState = .normal
-            }
-        case .shiftedSymbols:
-            keyboardState = .normal
-        }
-        isShiftLocked = false
-        buildTamilKeyboard()
-    }
-    
-    private func updateStatusLabel() {
-        let stateText: String
-        switch keyboardState {
-        case .normal:
-            stateText = "Normal"
-        case .shifted:
-            stateText = isShiftLocked ? "CAPS" : "Shift"
-        case .symbols:
-            stateText = "123"
-        case .shiftedSymbols:
-            stateText = "#+="
-        }
-        
-        let translatorText = currentTranslator is Tamil99KeyTranslator ? "Tamil99" : "Tamil Anjal"
-        statusLabel.text = "\(translatorText) - \(stateText)"
-    }
-    
-    private func handleCharacterInput(keyCode: Int, label: String) {
-        Task {
-            do {
-                let result = await currentTranslator.translateKey(
-                    keyCode: keyCode,
-                    isShifted: false,
-                    currentComposition: currentComposition
-                )
-                
-                currentComposition = result.newComposition
-                textDocumentProxy.insertText(result.displayText)
-                
-                await MainActor.run {
-                    updateDisplay()
-                }
-                
-            } catch {
-                print("Translation error: \(error)")
-            }
-        }
-    }
-    
-    private func handleDelete() {
-        Task {
-            do {
-                let result = await currentTranslator.processDelete(composition: currentComposition)
-                
-                currentComposition = result.newComposition
-                
-                for _ in 0..<result.charactersToDelete {
-                    textDocumentProxy.deleteBackward()
-                }
-                
-                await MainActor.run {
-                    updateDisplay()
-                }
-                
-            } catch {
-                print("Delete error: \(error)")
-            }
-        }
-    }
-    
-    private func handleSpace() {
-        textDocumentProxy.insertText(" ")
-        currentComposition = ""
-        updateDisplay()
-    }
-    
-    private func handleReturn() {
-        textDocumentProxy.insertText("\n")
-        currentComposition = ""
-        updateDisplay()
-    }
-    
-    private func clearComposition() {
-        currentComposition = ""
-        updateDisplay()
-    }
-    
-    private func switchTranslatorMode() {
-        if currentTranslator is Tamil99KeyTranslator {
-            currentTranslator = tamilAnjalTranslator
-            statusLabel.text = "Tamil Anjal Layout Test"
-        } else {
-            currentTranslator = tamil99Translator
-            statusLabel.text = "Tamil99 Layout Test"
-        }
-        currentComposition = ""
-        updateDisplay()
-    }
-    
-    private func updateDisplay() {
-        compositionLabel.text = currentComposition.isEmpty ?
-            "Composition: (empty)" :
-            "Composition: \(currentComposition)"
-    }
-    
     override func updateViewConstraints() {
         super.updateViewConstraints()
         
@@ -403,20 +211,47 @@ class KeyboardViewController: UIInputViewController {
             multiplier: 0.0,
             constant: 250
         )
-        minHeightConstraint.priority = UILayoutPriority(999) // High but not required
+        minHeightConstraint.priority = UILayoutPriority(999)
         view.addConstraint(minHeightConstraint)
     }
+}
 
-    // Add this method to your KeyboardViewController class
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        
-        // Update keyboard colors when interface style changes
-        if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
-            KeyboardBuilder.updateKeyboardColors(
-                in: keyboardContainer,
-                interfaceStyle: traitCollection.userInterfaceStyle
-            )
+// MARK: - KeyboardLogicDelegate
+extension KeyboardViewController: KeyboardLogicDelegate {
+    func insertText(_ text: String) {
+        textDocumentProxy.insertText(text)
+        updateDisplay()
+    }
+    
+    func deleteBackward(count: Int) {
+        for _ in 0..<count {
+            textDocumentProxy.deleteBackward()
+        }
+        updateDisplay()
+    }
+    
+    func performHapticFeedback(style: UIImpactFeedbackGenerator.FeedbackStyle) {
+        let impactFeedback = UIImpactFeedbackGenerator(style: style)
+        impactFeedback.impactOccurred()
+    }
+    
+    func updateKeyboardView() {
+        DispatchQueue.main.async {
+            self.buildKeyboard()
+        }
+    }
+    
+    func getCurrentInterfaceStyle() -> UIUserInterfaceStyle {
+        return traitCollection.userInterfaceStyle
+    }
+}
+
+// MARK: - KeyboardThemeObserver
+extension KeyboardViewController: KeyboardThemeObserver {
+    func themeDidChange() {
+        DispatchQueue.main.async {
+            // Theme changed - rebuild keyboard with new theme
+            self.buildKeyboard()
         }
     }
 }

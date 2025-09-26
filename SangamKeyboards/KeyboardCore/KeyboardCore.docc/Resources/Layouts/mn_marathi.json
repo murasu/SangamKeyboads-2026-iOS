@@ -1,0 +1,276 @@
+{
+  "keyWidth": "7.34375%",
+  "horizontalGap": "1.71875%",
+  "rows": [
+    {
+      "verticalGap": "5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "unichar": "ौ",
+          "keyLabel": "",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left",
+          "popupCodes": "ौऔ"
+        },
+        {
+          "unichar": "ै",
+          "keyLabel": "",
+          "popupCodes": "ैऐॅ"
+        },
+        {
+          "unichar": "ा",
+          "keyLabel": "",
+          "popupCodes": "ाआ"
+        },
+        {
+          "unichar": "ी",
+          "keyLabel": "",
+          "popupCodes": "ीई"
+        },
+        {
+          "unichar": "ू",
+          "keyLabel": "",
+          "popupCodes": "ूऊ"
+        },
+        {
+          "unichar": "ब",
+          "keyLabel": "",
+          "popupCodes": "बभॿ"
+        },
+        {
+          "unichar": "ह",
+          "keyLabel": "",
+          "popupCodes": "हः"
+        },
+        {
+          "unichar": "ग",
+          "keyLabel": "",
+          "popupCodes": "गग़घ௒ॻ"
+        },
+        {
+          "unichar": "द",
+          "keyLabel": "",
+          "popupCodes": "दध"
+        },
+        {
+          "unichar": "ज",
+          "keyLabel": "",
+          "popupCodes": "जझज़௒ॼ"
+        },
+        {
+          "unichar": "ड",
+          "keyLabel": "",
+          "keyEdgeFlags": "right",
+          "popupCodes": "डढड़ॾ"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "unichar": "ो",
+          "keyLabel": "",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left",
+          "popupCodes": "ोओॊ"
+        },
+        {
+          "unichar": "े",
+          "keyLabel": "",
+          "popupCodes": "ेएॅॆ"
+        },
+        {
+          "unichar": "्",
+          "keyLabel": "",
+          "popupCodes": "्अ"
+        },
+        {
+          "unichar": "ि",
+          "keyLabel": "",
+          "popupCodes": "िइ"
+        },
+        {
+          "unichar": "ु",
+          "keyLabel": "",
+          "popupCodes": "ुउ"
+        },
+        {
+          "unichar": "प",
+          "keyLabel": "",
+          "popupCodes": "पफ"
+        },
+        {
+          "unichar": "र",
+          "keyLabel": "",
+          "popupCodes": "रृऱ"
+        },
+        {
+          "unichar": "क",
+          "keyLabel": "",
+          "popupCodes": "कखक़"
+        },
+        {
+          "unichar": "त",
+          "keyLabel": "",
+          "popupCodes": "तथ"
+        },
+        {
+          "unichar": "च",
+          "keyLabel": "",
+          "popupCodes": "चछ"
+        },
+        {
+          "unichar": "ट",
+          "keyLabel": "",
+          "keyEdgeFlags": "right",
+          "popupCodes": "टठ"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "codes": "-1",
+          "keyLabel": "",
+          "keyWidth": "11.875%",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left",
+          "isModifier": true,
+          "isShifted": false
+        },
+        {
+          "unichar": "ं",
+          "keyLabel": "",
+          "popupCodes": "ंँ"
+        },
+        {
+          "unichar": "ॉ",
+          "keyLabel": "",
+          "popupCodes": "ॉऑ"
+        },
+        {
+          "unichar": "म",
+          "keyLabel": "",
+          "popupCodes": "मॐ"
+        },
+        {
+          "unichar": "न",
+          "keyLabel": "",
+          "popupCodes": "नणञङऩ"
+        },
+        {
+          "unichar": "व",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ळ",
+          "keyLabel": "",
+          "popupCodes": "ळलऴऌ"
+        },
+        {
+          "unichar": "स",
+          "keyLabel": "",
+          "popupCodes": "सशष"
+        },
+        {
+          "unichar": "य",
+          "keyLabel": "",
+          "popupCodes": "यय़"
+        },
+        {
+          "codes": "-5",
+          "keyLabel": "",
+          "keyWidth": "11.875%",
+          "keyEdgeFlags": "right",
+          "isRepeatable": true
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": "phone",
+      "keys": [
+        {
+          "codes": "-2",
+          "keyLabel": "123",
+          "keyWidth": "11.875%",
+          "horizontalGap": "0.9375%"
+        },
+        {
+          "codes": "-6",
+          "keyLabel": "⌘",
+          "keyWidth": "11.875%"
+        },
+        {
+          "codes": "32",
+          "keyLabel": "#space",
+          "keyWidth": "33.84375%",
+          "isRepeatable": true
+        },
+        {
+          "unichar": "।",
+          "keyLabel": "",
+          "keyWidth": "8.5%",
+          "popupCodes": "।॥"
+        },
+        {
+          "codes": "10",
+          "keyLabel": "#return",
+          "keyWidth": "25.15625%",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": "pad",
+      "keys": [
+        {
+          "codes": "-2",
+          "keyLabel": "123",
+          "keyWidth": "11.875%",
+          "horizontalGap": "0.9375%"
+        },
+        {
+          "codes": "-6",
+          "keyLabel": "⌘",
+          "keyWidth": "11.875%"
+        },
+        {
+          "codes": "32",
+          "keyLabel": "#space",
+          "keyWidth": "33.84375%",
+          "isRepeatable": true
+        },
+        {
+          "unichar": "।",
+          "keyLabel": "",
+          "keyWidth": "8%",
+          "popupCodes": "।॥"
+        },
+        {
+          "codes": "10",
+          "keyLabel": "#return",
+          "keyWidth": "15.9375%",
+          "keyEdgeFlags": "right"
+        },
+        {
+          "codes": "-10",
+          "keyLabel": "Done",
+          "keyWidth": "8%",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    }
+  ]
+}

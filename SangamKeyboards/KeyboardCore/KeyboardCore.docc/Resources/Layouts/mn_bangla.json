@@ -1,0 +1,274 @@
+{
+  "keyWidth": "7.34375%",
+  "horizontalGap": "1.71875%",
+  "rows": [
+    {
+      "verticalGap": "5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "unichar": "ৌ",
+          "keyLabel": "",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left",
+          "popupCodes": "ৌঔ১"
+        },
+        {
+          "unichar": "ৈ",
+          "keyLabel": "",
+          "popupCodes": "ৈঐ২"
+        },
+        {
+          "unichar": "া",
+          "keyLabel": "",
+          "popupCodes": "াআ৩"
+        },
+        {
+          "unichar": "ী",
+          "keyLabel": "",
+          "popupCodes": "ীঈ৪"
+        },
+        {
+          "unichar": "ূ",
+          "keyLabel": "",
+          "popupCodes": "ূঊ৫"
+        },
+        {
+          "unichar": "ব",
+          "keyLabel": "",
+          "popupCodes": "বভৰৱ৬"
+        },
+        {
+          "unichar": "হ",
+          "keyLabel": "",
+          "popupCodes": "হঃ৭"
+        },
+        {
+          "unichar": "গ",
+          "keyLabel": "",
+          "popupCodes": "গঘ৮"
+        },
+        {
+          "unichar": "দ",
+          "keyLabel": "",
+          "popupCodes": "দধ৯"
+        },
+        {
+          "unichar": "জ",
+          "keyLabel": "",
+          "popupCodes": "জঝ০"
+        },
+        {
+          "unichar": "ড",
+          "keyLabel": "",
+          "keyEdgeFlags": "right",
+          "popupCodes": "ডঢড়"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "unichar": "ো",
+          "keyLabel": "",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left",
+          "popupCodes": "োও"
+        },
+        {
+          "unichar": "ে",
+          "keyLabel": "",
+          "popupCodes": "েএ"
+        },
+        {
+          "unichar": "্",
+          "keyLabel": "",
+          "popupCodes": "্অ"
+        },
+        {
+          "unichar": "ি",
+          "keyLabel": "",
+          "popupCodes": "িই"
+        },
+        {
+          "unichar": "ু",
+          "keyLabel": "",
+          "popupCodes": "ুউ"
+        },
+        {
+          "unichar": "প",
+          "keyLabel": "",
+          "popupCodes": "পফ"
+        },
+        {
+          "unichar": "র",
+          "keyLabel": "",
+          "popupCodes": "রৃ৥ৼ"
+        },
+        {
+          "unichar": "ক",
+          "keyLabel": "",
+          "popupCodes": "কখ"
+        },
+        {
+          "unichar": "ত",
+          "keyLabel": "",
+          "popupCodes": "তথৎ"
+        },
+        {
+          "unichar": "চ",
+          "keyLabel": "",
+          "popupCodes": "চছ"
+        },
+        {
+          "unichar": "ট",
+          "keyLabel": "",
+          "keyEdgeFlags": "right",
+          "popupCodes": "টঠ"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "codes": "-1",
+          "keyLabel": "",
+          "keyWidth": "11.875%",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left",
+          "isModifier": true,
+          "isShifted": false
+        },
+        {
+          "unichar": "ং",
+          "keyLabel": "",
+          "popupCodes": "ংঁ"
+        },
+        {
+          "unichar": "ম",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "ন",
+          "keyLabel": "",
+          "popupCodes": "নণঞঙ"
+        },
+        {
+          "unichar": "ল",
+          "keyLabel": "",
+          "popupCodes": "লঌৡৢৣ"
+        },
+        {
+          "unichar": "স",
+          "keyLabel": "",
+          "popupCodes": "সষ"
+        },
+        {
+          "unichar": "শ",
+          "keyLabel": ""
+        },
+        {
+          "unichar": "য",
+          "keyLabel": "",
+          "popupCodes": "যয়"
+        },
+        {
+          "codes": "2558",
+          "keyLabel": "্য"
+        },
+        {
+          "codes": "-5",
+          "keyLabel": "",
+          "keyWidth": "11.875%",
+          "keyEdgeFlags": "right",
+          "isRepeatable": true
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": "phone",
+      "keys": [
+        {
+          "codes": "-2",
+          "keyLabel": "123",
+          "keyWidth": "11.875%",
+          "horizontalGap": "0.9375%"
+        },
+        {
+          "codes": "-6",
+          "keyLabel": "⌘",
+          "keyWidth": "11.875%"
+        },
+        {
+          "codes": "32",
+          "keyLabel": "#space",
+          "keyWidth": "33.84375%",
+          "isRepeatable": true
+        },
+        {
+          "unichar": "।",
+          "keyLabel": "",
+          "keyWidth": "8.5%",
+          "popupCodes": "।॥"
+        },
+        {
+          "codes": "10",
+          "keyLabel": "#return",
+          "keyWidth": "25.15625%",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": "pad",
+      "keys": [
+        {
+          "codes": "-2",
+          "keyLabel": "123",
+          "keyWidth": "11.875%",
+          "horizontalGap": "0.9375%"
+        },
+        {
+          "codes": "-6",
+          "keyLabel": "⌘",
+          "keyWidth": "11.875%"
+        },
+        {
+          "codes": "32",
+          "keyLabel": "#space",
+          "keyWidth": "33.84375%",
+          "isRepeatable": true
+        },
+        {
+          "unichar": "।",
+          "keyLabel": "",
+          "keyWidth": "8%",
+          "popupCodes": "।॥"
+        },
+        {
+          "codes": "10",
+          "keyLabel": "#return",
+          "keyWidth": "15.9375%",
+          "keyEdgeFlags": "right"
+        },
+        {
+          "codes": "-10",
+          "keyLabel": "Done",
+          "keyWidth": "8%",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    }
+  ]
+}

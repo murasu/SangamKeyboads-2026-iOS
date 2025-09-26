@@ -1,0 +1,251 @@
+{
+  "keyWidth": "8.125%",
+  "horizontalGap": "1.875%",
+  "rows": [
+    {
+      "verticalGap": "5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "codes": "3047",
+          "keyLabel": "௧",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left"
+        },
+        {
+          "codes": "3048",
+          "keyLabel": "௨"
+        },
+        {
+          "codes": "3049",
+          "keyLabel": "௩"
+        },
+        {
+          "codes": "3050",
+          "keyLabel": "௪"
+        },
+        {
+          "codes": "3051",
+          "keyLabel": "௫"
+        },
+        {
+          "codes": "3052",
+          "keyLabel": "௬"
+        },
+        {
+          "codes": "3053",
+          "keyLabel": "௭"
+        },
+        {
+          "codes": "3054",
+          "keyLabel": "௮"
+        },
+        {
+          "codes": "3055",
+          "keyLabel": "௯"
+        },
+        {
+          "codes": "3046",
+          "keyLabel": "௦",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "codes": "2947",
+          "keyLabel": "ஃ",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left"
+        },
+        {
+          "codes": "3000",
+          "keyLabel": "ஸ"
+        },
+        {
+          "codes": "2999",
+          "keyLabel": "ஷ"
+        },
+        {
+          "codes": "2972",
+          "keyLabel": "ஜ"
+        },
+        {
+          "codes": "3001",
+          "keyLabel": "ஹ"
+        },
+        {
+          "codes": "61227",
+          "keyLabel": "க்ஷ"
+        },
+        {
+          "codes": "61233",
+          "keyLabel": "ஶ்ரீ"
+        },
+        {
+          "codes": "3056",
+          "keyLabel": "௰"
+        },
+        {
+          "codes": "3057",
+          "keyLabel": "௱"
+        },
+        {
+          "codes": "3058",
+          "keyLabel": "௲",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "codes": "-1",
+          "keyLabel": "⇧",
+          "keyWidth": "11.875%",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left",
+          "isModifier": true,
+          "isShifted": true
+        },
+        {
+          "codes": "3059",
+          "keyLabel": "௳",
+          "keyWidth": "7.34375%",
+          "horizontalGap": "1.71875%"
+        },
+        {
+          "codes": "3060",
+          "keyLabel": "௴",
+          "keyWidth": "7.34375%",
+          "horizontalGap": "1.71875%"
+        },
+        {
+          "codes": "3061",
+          "keyLabel": "௵",
+          "keyWidth": "7.34375%",
+          "horizontalGap": "1.71875%"
+        },
+        {
+          "codes": "3062",
+          "keyLabel": "௶",
+          "keyWidth": "7.34375%",
+          "horizontalGap": "1.71875%"
+        },
+        {
+          "codes": "3063",
+          "keyLabel": "௷",
+          "keyWidth": "7.34375%",
+          "horizontalGap": "1.71875%"
+        },
+        {
+          "codes": "3064",
+          "keyLabel": "௸",
+          "keyWidth": "7.34375%",
+          "horizontalGap": "1.71875%"
+        },
+        {
+          "codes": "3065",
+          "keyLabel": "௹",
+          "keyWidth": "7.34375%",
+          "horizontalGap": "1.71875%"
+        },
+        {
+          "codes": "3066",
+          "keyLabel": "௺",
+          "keyWidth": "7.34375%",
+          "horizontalGap": "1.71875%"
+        },
+        {
+          "codes": "-5",
+          "keyLabel": "⌫",
+          "keyWidth": "11.875%",
+          "horizontalGap": "1.71875%",
+          "keyEdgeFlags": "right",
+          "isRepeatable": true
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": "phone",
+      "keys": [
+        {
+          "codes": "-2",
+          "keyLabel": "123",
+          "keyWidth": "24.6875%",
+          "horizontalGap": "1.71875"
+        },
+        {
+          "codes": "32",
+          "keyLabel": "#space",
+          "keyWidth": "33.84375%",
+          "horizontalGap": "1.71875%",
+          "isRepeatable": true
+        },
+        {
+          "codes": "3021",
+          "keyLabel": "்",
+          "keyWidth": "10.00475%",
+          "horizontalGap": "1.71875%"
+        },
+        {
+          "codes": "10",
+          "keyLabel": "#return",
+          "keyWidth": "23.6515%",
+          "horizontalGap": "1.71875%",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": "pad",
+      "keys": [
+        {
+          "codes": "-2",
+          "keyLabel": "#123",
+          "keyWidth": "‎24.6885%",
+          "horizontalGap": "1.71875%"
+        },
+        {
+          "codes": "32",
+          "keyLabel": "#space",
+          "keyWidth": "33.84375%",
+          "horizontalGap": "1.71875%",
+          "isRepeatable": true
+        },
+        {
+          "codes": "3021",
+          "keyLabel": "்",
+          "keyWidth": "8%",
+          "horizontalGap": "1.71875%"
+        },
+        {
+          "codes": "10",
+          "keyLabel": "#return",
+          "keyWidth": "15.9375%",
+          "horizontalGap": "1.71875%",
+          "keyEdgeFlags": "right"
+        },
+        {
+          "codes": "-10",
+          "keyLabel": "Done",
+          "keyWidth": "8%",
+          "horizontalGap": "1.71875%",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,243 @@
+{
+  "keyWidth": "7.34375%",
+  "horizontalGap": "1.71875%",
+  "rows": [
+    {
+      "verticalGap": "5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "codes": "2950",
+          "keyLabel": "ஆ",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left"
+        },
+        {
+          "codes": "2952",
+          "keyLabel": "ஈ"
+        },
+        {
+          "codes": "2954",
+          "keyLabel": "ஊ"
+        },
+        {
+          "codes": "2959",
+          "keyLabel": "ஏ"
+        },
+        {
+          "codes": "2995",
+          "keyLabel": "ள"
+        },
+        {
+          "codes": "2993",
+          "keyLabel": "ற"
+        },
+        {
+          "codes": "2985",
+          "keyLabel": "ன"
+        },
+        {
+          "codes": "2975",
+          "keyLabel": "ட"
+        },
+        {
+          "codes": "2979",
+          "keyLabel": "ண"
+        },
+        {
+          "codes": "2970",
+          "keyLabel": "ச"
+        },
+        {
+          "codes": "2974",
+          "keyLabel": "ஞ",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "codes": "2949",
+          "keyLabel": "அ",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left"
+        },
+        {
+          "codes": "2951",
+          "keyLabel": "இ"
+        },
+        {
+          "codes": "2953",
+          "keyLabel": "உ"
+        },
+        {
+          "codes": "2958",
+          "keyLabel": "எ"
+        },
+        {
+          "codes": "2960",
+          "keyLabel": "ஐ"
+        },
+        {
+          "codes": "2965",
+          "keyLabel": "க"
+        },
+        {
+          "codes": "2986",
+          "keyLabel": "ப"
+        },
+        {
+          "codes": "2990",
+          "keyLabel": "ம"
+        },
+        {
+          "codes": "2980",
+          "keyLabel": "த"
+        },
+        {
+          "codes": "2984",
+          "keyLabel": "ந"
+        },
+        {
+          "codes": "2991",
+          "keyLabel": "ய",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "codes": "-1",
+          "keyLabel": "⬆︎",
+          "keyWidth": "11.875%",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left",
+          "isModifier": true,
+          "isShifted": false
+        },
+        {
+          "codes": "2964",
+          "keyLabel": "ஔ",
+          "keyWidth": "7.34375%"
+        },
+        {
+          "codes": "2963",
+          "keyLabel": "ஓ",
+          "keyWidth": "7.34375%"
+        },
+        {
+          "codes": "2962",
+          "keyLabel": "ஒ",
+          "keyWidth": "7.34375%"
+        },
+        {
+          "codes": "2997",
+          "keyLabel": "வ",
+          "keyWidth": "7.34375%"
+        },
+        {
+          "codes": "2969",
+          "keyLabel": "ங",
+          "keyWidth": "7.34375%"
+        },
+        {
+          "codes": "2994",
+          "keyLabel": "ல",
+          "keyWidth": "7.34375%"
+        },
+        {
+          "codes": "2992",
+          "keyLabel": "ர",
+          "keyWidth": "7.34375%"
+        },
+        {
+          "codes": "2996",
+          "keyLabel": "ழ",
+          "keyWidth": "7.34375%"
+        },
+        {
+          "codes": "-5",
+          "keyLabel": "⌫",
+          "keyWidth": "11.875%",
+          "keyEdgeFlags": "right",
+          "isRepeatable": true
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": "phone",
+      "keys": [
+        {
+          "codes": "-2",
+          "keyLabel": "123",
+          "keyWidth": "23.75%",
+          "horizontalGap": "0.9375%"
+        },
+        {
+          "codes": "32",
+          "keyLabel": "#space",
+          "keyWidth": "33.84375%",
+          "isRepeatable": true
+        },
+        {
+          "codes": "3021",
+          "keyLabel": "்",
+          "keyWidth": "10.00475%"
+        },
+        {
+          "codes": "10",
+          "keyLabel": "#return",
+          "keyWidth": "23.6515%",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": "pad",
+      "keys": [
+        {
+          "codes": "-2",
+          "keyLabel": "#123",
+          "keyWidth": "24.6875%",
+          "horizontalGap": "1.71875"
+        },
+        {
+          "codes": "32",
+          "keyLabel": "#space",
+          "keyWidth": "33.84375%",
+          "isRepeatable": true
+        },
+        {
+          "codes": "3021",
+          "keyLabel": "்",
+          "keyWidth": "8%"
+        },
+        {
+          "codes": "10",
+          "keyLabel": "#return",
+          "keyWidth": "15.9375%",
+          "keyEdgeFlags": "right"
+        },
+        {
+          "codes": "-10",
+          "keyLabel": "Done",
+          "keyWidth": "8%",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    }
+  ]
+}

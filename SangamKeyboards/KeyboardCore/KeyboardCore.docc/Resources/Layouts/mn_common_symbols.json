@@ -1,0 +1,223 @@
+{
+  "keyWidth": "8.125%",
+  "horizontalGap": "1.875%",
+  "rows": [
+    {
+      "verticalGap": "5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "codes": "49",
+          "keyLabel": "1",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left"
+        },
+        {
+          "codes": "50",
+          "keyLabel": "2"
+        },
+        {
+          "codes": "51",
+          "keyLabel": "3"
+        },
+        {
+          "codes": "52",
+          "keyLabel": "4"
+        },
+        {
+          "codes": "53",
+          "keyLabel": "5"
+        },
+        {
+          "codes": "54",
+          "keyLabel": "6"
+        },
+        {
+          "codes": "55",
+          "keyLabel": "7"
+        },
+        {
+          "codes": "56",
+          "keyLabel": "8"
+        },
+        {
+          "codes": "57",
+          "keyLabel": "9"
+        },
+        {
+          "codes": "48",
+          "keyLabel": "0",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "codes": "45",
+          "keyLabel": "-",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left"
+        },
+        {
+          "codes": "47",
+          "keyLabel": "/"
+        },
+        {
+          "codes": "58",
+          "keyLabel": ":"
+        },
+        {
+          "codes": "59",
+          "keyLabel": ";"
+        },
+        {
+          "codes": "40",
+          "keyLabel": "("
+        },
+        {
+          "codes": "41",
+          "keyLabel": ")"
+        },
+        {
+          "codes": "8377",
+          "keyLabel": "₹"
+        },
+        {
+          "codes": "38",
+          "keyLabel": ""
+        },
+        {
+          "codes": "64",
+          "keyLabel": "@"
+        },
+        {
+          "codes": "34",
+          "keyLabel": "",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": null,
+      "keys": [
+        {
+          "codes": "-1",
+          "keyLabel": "#+=",
+          "keyWidth": "11.875%",
+          "horizontalGap": "0.9375%",
+          "keyEdgeFlags": "left",
+          "isShifted": false
+        },
+        {
+          "codes": "46",
+          "keyLabel": ".",
+          "keyWidth": "11.875%",
+          "horizontalGap": "3.75%"
+        },
+        {
+          "codes": "44",
+          "keyLabel": ",",
+          "keyWidth": "11.875%",
+          "horizontalGap": "horizontalGap=1.875%"
+        },
+        {
+          "codes": "63",
+          "keyLabel": "?",
+          "keyWidth": "11.875%",
+          "horizontalGap": "1.875%"
+        },
+        {
+          "codes": "33",
+          "keyLabel": "!",
+          "keyWidth": "11.875%",
+          "horizontalGap": "1.875%"
+        },
+        {
+          "codes": "39",
+          "keyLabel": "'",
+          "keyWidth": "11.875%",
+          "horizontalGap": "1.875%"
+        },
+        {
+          "codes": "-5",
+          "keyLabel": "⌫",
+          "keyWidth": "11.875%",
+          "horizontalGap": "3.75%",
+          "keyEdgeFlags": "right",
+          "isRepeatable": true
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": "phone",
+      "keys": [
+        {
+          "codes": "-2",
+          "keyLabel": "#abc",
+          "keyWidth": "11.875%",
+          "horizontalGap": "0.9375%"
+        },
+        {
+          "codes": "-6",
+          "keyLabel": "⌘",
+          "keyWidth": "11.875%"
+        },
+        {
+          "codes": "32",
+          "keyLabel": "#space",
+          "keyWidth": "44.0985%",
+          "isRepeatable": true
+        },
+        {
+          "codes": "10",
+          "keyLabel": "#return",
+          "keyWidth": "24.6515%"
+        }
+      ]
+    },
+    {
+      "verticalGap": "6.5%",
+      "keyHeight": "18%",
+      "rowId": "pad",
+      "keys": [
+        {
+          "codes": "-2",
+          "keyLabel": "#abc",
+          "keyWidth": "11.875%",
+          "horizontalGap": "0.9375%"
+        },
+        {
+          "codes": "-6",
+          "keyLabel": "⌘",
+          "keyWidth": "11.875%"
+        },
+        {
+          "codes": "32",
+          "keyLabel": "#space",
+          "keyWidth": "39.50475%",
+          "isRepeatable": true
+        },
+        {
+          "codes": "10",
+          "keyLabel": "#return",
+          "keyWidth": "19.27025%"
+        },
+        {
+          "codes": "-10",
+          "keyLabel": "Done",
+          "keyWidth": "8%",
+          "keyEdgeFlags": "right"
+        }
+      ]
+    }
+  ]
+}

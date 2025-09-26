@@ -30,7 +30,7 @@ public enum AppVariant {
 public struct SupportedLanguages {
     public static let all: Set<LanguageId> = Set(LanguageId.allCases)
     public static let tamilOnly: Set<LanguageId> = [.tamil]
-    public static let jawiOnly: Set<LanguageId> = [.jawi, .malay]
+    public static let jawiOnly: Set<LanguageId> = [.jawi]
     
     public static func configure(supportedLanguages: Set<LanguageId>) {
         AppConfiguration.shared.enabledLanguages = supportedLanguages

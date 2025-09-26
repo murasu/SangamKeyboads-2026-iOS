@@ -182,7 +182,7 @@ final class Tamil99KeyTranslator: KeyTranslator {
 }
 
 // MARK: - Helper Extension
-
+/*
 private extension String.UnicodeScalarView {
     init(_ scalars: [UnicodeScalar]) {
         self.init()
@@ -191,4 +191,4 @@ private extension String.UnicodeScalarView {
         }
     }
 }
-
+*/
