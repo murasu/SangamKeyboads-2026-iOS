@@ -182,14 +182,8 @@
         {
           "codes": "-2",
           "keyLabel": "123",
-          "keyWidth": "11.875%",
-          "horizontalGap": "0.9375%"
-        },
-        {
-          "codes": "-6",
-          "keyLabel": "⌘",
-          "keyWidth": "11.875%",
-          "horizontalGap": "1.71875%"
+          "keyWidth": "24.6875%",
+          "horizontalGap": "1.71875"
         },
         {
           "codes": "32",
@@ -221,13 +215,7 @@
         {
           "codes": "-2",
           "keyLabel": "#123",
-          "keyWidth": "11.875%",
-          "horizontalGap": "0.9375%"
-        },
-        {
-          "codes": "-6",
-          "keyLabel": "⌘",
-          "keyWidth": "11.875%",
+          "keyWidth": "‎24.6885%",
           "horizontalGap": "1.71875%"
         },
         {

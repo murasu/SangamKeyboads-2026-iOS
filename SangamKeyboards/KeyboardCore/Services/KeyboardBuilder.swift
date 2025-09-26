@@ -9,6 +9,8 @@ import UIKit
 
 public class KeyboardBuilder {
     
+    private static let debugMode = true // Enable debug to see what's happening
+    
     public static func buildKeyboard(
         layout: KeyboardLayout,
         containerView: UIView,
@@ -185,204 +187,176 @@ public class KeyboardBuilder {
     
     private static func isSpecialKey(_ key: KeyboardKey) -> Bool {
         let specialKeyCodes: Set<Int> = [-1, -2, -5, -6] // shift, mode, delete, globe
-        return specialKeyCodes.contains(key.keyCode) ||
-               key.keyLabel.hasPrefix("#") ||
-               key.isModifier == true
+        let hasSpecialCode = specialKeyCodes.contains(key.keyCode)
+        let hasHashLabel = key.keyLabel.hasPrefix("#")
+        let isModifierKey = key.isModifier == true
+        
+        let isSpecial = hasSpecialCode || hasHashLabel || isModifierKey
+        
+        if isSpecial && debugMode {
+            print("Key identified as special: code=\(key.keyCode), label='\(key.keyLabel)', isModifier=\(key.isModifier ?? false)")
+            print("  - hasSpecialCode: \(hasSpecialCode)")
+            print("  - hasHashLabel: \(hasHashLabel)")
+            print("  - isModifierKey: \(isModifierKey)")
+        }
+        
+        return isSpecial
     }
     
     private static func configureSpecialKey(button: UIButton, key: KeyboardKey) {
-        button.setTitle(nil, for: .normal) // Clear any text
+        if debugMode {
+            print("Configuring special key: code=\(key.keyCode), label='\(key.keyLabel)', isModifier=\(key.isModifier ?? false)")
+        }
+        
+        // Set background colors - keys with # prefix or specific codes should be gray (modifier color)
+        let shouldBeGray = key.keyLabel.hasPrefix("#") || key.keyCode == -1 || key.keyCode == -5 || key.keyCode == -2
+        if shouldBeGray {
+            button.backgroundColor = UIColor.systemGray4 // Same as shift and delete
+        }
         
         // Create custom image for special keys
         let keySize = CGSize(width: 30, height: 30)
-        let image = createSpecialKeyImage(for: key, size: keySize)
+        let image = createSpecialKeyImage(for: key, size: keySize, shifted: false)
         
         if let image = image {
+            if debugMode { print("✓ Created image for key \(key.keyCode)") }
+            button.setTitle(nil, for: .normal) // Clear text only if we have an image
             button.setImage(image, for: .normal)
             button.imageView?.contentMode = .scaleAspectFit
-            button.tintColor = .black
+            button.tintColor = .clear // Don't tint the image since it has its own colors
         } else {
+            if debugMode { print("✗ Failed to create image for key \(key.keyCode), using text fallback") }
             // Fallback to text if image creation fails
-            let displayLabel = localizeKeyLabel(key.keyLabel)
-            button.setTitle(displayLabel, for: .normal)
+            let displayText = getDisplayTextForKey(key)
+            button.setTitle(displayText, for: .normal)
             button.titleLabel?.font = UIFont.systemFont(ofSize: getFontSize(for: key))
+            button.setTitleColor(.black, for: .normal)
         }
         
         // Store key reference for state-aware updates
         button.tag = key.keyCode
     }
     
-    // Method to update shift key appearance
-    public static func updateShiftKeyAppearance(button: UIButton, shifted: Bool, locked: Bool = false) {
-        guard button.tag == -1 else { return } // Only for shift keys
-        
-        let keySize = CGSize(width: 30, height: 30)
-        // For now, use the fallback drawing since we don't have KbStyleKit yet
-        let image = createShiftImage(size: keySize, shifted: shifted || locked)
-        button.setImage(image, for: .normal)
-        
-        // Update background color for visual feedback
-        if locked {
-            button.backgroundColor = UIColor.systemBlue.withAlphaComponent(0.3)
-        } else if shifted {
-            button.backgroundColor = UIColor.systemGray3
-        } else {
-            button.backgroundColor = UIColor.systemGray4
+    private static func getDisplayTextForKey(_ key: KeyboardKey) -> String {
+        switch key.keyCode {
+        case -1: // Shift
+            return "⬆"
+        case -5: // Delete
+            return "⌫"
+        case -6: // Globe (should be removed from layout)
+            return "🌐"
+        case -2: // Mode change (123/ABC)
+            return key.keyLabel == "123" ? "123" : "ABC"
+        case 32: // Space
+            return "space"
+        case 10: // Return
+            return "return"
+        default:
+            return key.keyLabel.replacingOccurrences(of: "#", with: "")
         }
     }
     
-    private static func createSpecialKeyImage(for key: KeyboardKey, size: CGSize) -> UIImage? {
+    private static func createSpecialKeyImage(for key: KeyboardKey, size: CGSize, shifted: Bool = false) -> UIImage? {
+        if debugMode { print("Creating image for key: code=\(key.keyCode), label='\(key.keyLabel)'") }
+        
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
-        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+        guard UIGraphicsGetCurrentContext() != nil else {
+            if debugMode { print("Failed to get graphics context") }
+            return nil
+        }
         
         let rect = CGRect(origin: .zero, size: size)
         
         switch key.keyCode {
         case -1: // Shift
-            drawShiftSymbol(in: rect, context: context)
+            if debugMode { print("Drawing shift symbol") }
+            drawShiftSymbol(in: rect, shifted: shifted)
         case -5: // Delete
-            drawDeleteSymbol(in: rect, context: context)
-        case -6: // Globe
-            drawGlobeSymbol(in: rect, context: context)
+            if debugMode { print("Drawing delete symbol") }
+            drawDeleteSymbol(in: rect)
+        case -6: // Globe (should not appear but handle it)
+            if debugMode { print("Drawing globe - this should not appear!") }
+            drawText("🌐", in: rect)
         case -2: // Mode change (123/ABC)
-            drawModeSymbol(in: rect, context: context, label: key.keyLabel)
+            if debugMode { print("Drawing mode symbol") }
+            drawText(key.keyLabel == "123" ? "123" : "ABC", in: rect)
+        case 32: // Space
+            if debugMode { print("Drawing space text") }
+            drawText("space", in: rect)
+        case 10: // Return
+            if debugMode { print("Drawing return text") }
+            drawText("return", in: rect)
         default:
+            if debugMode { print("Drawing default text: '\(key.keyLabel)'") }
             // For other special keys, draw text
-            drawText(key.keyLabel, in: rect)
+            let cleanText = key.keyLabel.replacingOccurrences(of: "#", with: "")
+            drawText(cleanText, in: rect)
         }
         
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        return image
-    }
-    
-    private static func createShiftImage(size: CGSize, shifted: Bool) -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
-        guard let context = UIGraphicsGetCurrentContext() else { return nil }
-        
-        let rect = CGRect(origin: .zero, size: size)
-        
-        // Set colors based on shift state
-        let color = shifted ? UIColor.black : UIColor.darkGray
-        context.setStrokeColor(color.cgColor)
-        context.setFillColor(color.cgColor)
-        context.setLineWidth(2.0)
-        
-        let path = CGMutablePath()
-        let centerX = rect.midX
-        let topY = rect.minY + 5
-        let bottomY = rect.maxY - 8
-        let arrowWidth: CGFloat = 12
-        
-        // Draw upward arrow
-        path.move(to: CGPoint(x: centerX, y: topY))
-        path.addLine(to: CGPoint(x: centerX - arrowWidth/2, y: topY + arrowWidth/2))
-        path.move(to: CGPoint(x: centerX, y: topY))
-        path.addLine(to: CGPoint(x: centerX + arrowWidth/2, y: topY + arrowWidth/2))
-        
-        // Draw vertical line
-        path.move(to: CGPoint(x: centerX, y: topY + 3))
-        path.addLine(to: CGPoint(x: centerX, y: bottomY - 3))
-        
-        // Draw horizontal base
-        path.move(to: CGPoint(x: centerX - 6, y: bottomY))
-        path.addLine(to: CGPoint(x: centerX + 6, y: bottomY))
-        
-        context.addPath(path)
-        context.strokePath()
-        
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
+        if debugMode {
+            if image != nil {
+                print("Successfully created image for key \(key.keyCode)")
+            } else {
+                print("Failed to create image for key \(key.keyCode)")
+            }
+        }
         
         return image
     }
     
-    private static func drawShiftSymbol(in rect: CGRect, context: CGContext) {
-        context.setStrokeColor(UIColor.black.cgColor)
-        context.setLineWidth(2.0)
+    private static func drawShiftSymbol(in rect: CGRect, shifted: Bool) {
+        // Use black for visibility on gray background
+        let fillColor = UIColor.black
         
-        let path = CGMutablePath()
+        // Simple but clear upward arrow
+        let path = UIBezierPath()
         let centerX = rect.midX
-        let topY = rect.minY + 5
-        let bottomY = rect.maxY - 8
-        let arrowWidth: CGFloat = 12
+        let topY = rect.minY + 6
+        let bottomY = rect.maxY - 6
+        let arrowWidth: CGFloat = 10
         
-        // Draw upward arrow
+        // Arrow head (triangle)
         path.move(to: CGPoint(x: centerX, y: topY))
         path.addLine(to: CGPoint(x: centerX - arrowWidth/2, y: topY + arrowWidth/2))
-        path.move(to: CGPoint(x: centerX, y: topY))
+        path.addLine(to: CGPoint(x: centerX - 3, y: topY + arrowWidth/2))
+        path.addLine(to: CGPoint(x: centerX - 3, y: bottomY))
+        path.addLine(to: CGPoint(x: centerX + 3, y: bottomY))
+        path.addLine(to: CGPoint(x: centerX + 3, y: topY + arrowWidth/2))
         path.addLine(to: CGPoint(x: centerX + arrowWidth/2, y: topY + arrowWidth/2))
+        path.close()
         
-        // Draw vertical line
-        path.move(to: CGPoint(x: centerX, y: topY + 3))
-        path.addLine(to: CGPoint(x: centerX, y: bottomY - 3))
-        
-        // Draw horizontal base
-        path.move(to: CGPoint(x: centerX - 6, y: bottomY))
-        path.addLine(to: CGPoint(x: centerX + 6, y: bottomY))
-        
-        context.addPath(path)
-        context.strokePath()
+        fillColor.setFill()
+        path.fill()
     }
     
-    private static func drawDeleteSymbol(in rect: CGRect, context: CGContext) {
-        context.setStrokeColor(UIColor.black.cgColor)
-        context.setLineWidth(1.5)
+    private static func drawDeleteSymbol(in rect: CGRect) {
+        // Black X for visibility
+        let strokeColor = UIColor.black
         
-        let path = CGMutablePath()
-        let insetRect = rect.insetBy(dx: 4, dy: 8)
+        let path = UIBezierPath()
+        let inset: CGFloat = 6
+        let insetRect = rect.insetBy(dx: inset, dy: inset)
         
-        // Draw X shape
+        // First diagonal of X
         path.move(to: CGPoint(x: insetRect.minX, y: insetRect.minY))
         path.addLine(to: CGPoint(x: insetRect.maxX, y: insetRect.maxY))
+        
+        // Second diagonal of X
         path.move(to: CGPoint(x: insetRect.maxX, y: insetRect.minY))
         path.addLine(to: CGPoint(x: insetRect.minX, y: insetRect.maxY))
         
-        context.addPath(path)
-        context.strokePath()
-    }
-    
-    private static func drawGlobeSymbol(in rect: CGRect, context: CGContext) {
-        context.setStrokeColor(UIColor.black.cgColor)
-        context.setLineWidth(1.0)
-        
-        let center = CGPoint(x: rect.midX, y: rect.midY)
-        let radius = min(rect.width, rect.height) / 2 - 4
-        
-        // Draw circle
-        context.addEllipse(in: CGRect(x: center.x - radius, y: center.y - radius, width: radius * 2, height: radius * 2))
-        
-        // Draw horizontal line
-        context.move(to: CGPoint(x: center.x - radius, y: center.y))
-        context.addLine(to: CGPoint(x: center.x + radius, y: center.y))
-        
-        // Draw vertical line
-        context.move(to: CGPoint(x: center.x, y: center.y - radius))
-        context.addLine(to: CGPoint(x: center.x, y: center.y + radius))
-        
-        // Draw curved lines
-        let path = CGMutablePath()
-        path.move(to: CGPoint(x: center.x - radius * 0.7, y: center.y - radius))
-        path.addQuadCurve(to: CGPoint(x: center.x - radius * 0.7, y: center.y + radius),
-                         control: CGPoint(x: center.x + radius * 0.3, y: center.y))
-        
-        path.move(to: CGPoint(x: center.x + radius * 0.7, y: center.y - radius))
-        path.addQuadCurve(to: CGPoint(x: center.x + radius * 0.7, y: center.y + radius),
-                         control: CGPoint(x: center.x - radius * 0.3, y: center.y))
-        
-        context.addPath(path)
-        context.strokePath()
-    }
-    
-    private static func drawModeSymbol(in rect: CGRect, context: CGContext, label: String) {
-        let displayText = label == "#123" ? "123" : "ABC"
-        drawText(displayText, in: rect)
+        strokeColor.setStroke()
+        path.lineWidth = 2.0
+        path.lineCapStyle = .round
+        path.stroke()
     }
     
     private static func drawText(_ text: String, in rect: CGRect) {
         let attributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 12, weight: .medium),
+            .font: UIFont.systemFont(ofSize: 14, weight: .medium),
             .foregroundColor: UIColor.black
         ]
         
@@ -396,6 +370,23 @@ public class KeyboardBuilder {
         )
         
         attributedString.draw(in: textRect)
+    }
+    
+    // Method to update shift key appearance
+    public static func updateShiftKeyAppearance(button: UIButton, shifted: Bool, locked: Bool = false) {
+        guard button.tag == -1 else { return } // Only for shift keys
+        
+        // Update text and background color based on state
+        if locked {
+            button.setTitle("⬆", for: .normal)
+            button.backgroundColor = UIColor.systemBlue.withAlphaComponent(0.3)
+        } else if shifted {
+            button.setTitle("⬆", for: .normal)
+            button.backgroundColor = UIColor.systemGray3
+        } else {
+            button.setTitle("⬆", for: .normal)
+            button.backgroundColor = UIColor.systemGray4
+        }
     }
     
     private static func parsePercentage(_ percentString: String) -> CGFloat {
@@ -415,13 +406,13 @@ public class KeyboardBuilder {
         case "#return":
             return "return"
         case "⬆️", "#shift":
-            return "" // Will be drawn as symbol
+            return "" // Will be handled by special key logic
         case "#delete":
-            return "" // Will be drawn as symbol
+            return "" // Will be handled by special key logic
         case "#123", "#ABC":
-            return "" // Will be drawn as symbol
+            return "" // Will be handled by special key logic
         case "#globe":
-            return "" // Will be drawn as symbol
+            return "" // Will be handled by special key logic
         default:
             return label
         }
