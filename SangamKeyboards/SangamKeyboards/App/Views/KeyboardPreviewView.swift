@@ -318,3 +318,4 @@ extension KeyboardPreviewViewController: KeyboardThemeObserver {
         KeyboardPreviewView()
     }
 }
+

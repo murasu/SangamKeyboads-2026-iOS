@@ -41,6 +41,14 @@ public class LayoutParser {
     
     // MARK: - Private Helper Methods
     private static func getLayoutFilename(for languageId: LanguageId, state: KeyboardState) -> String {
+        // For symbols states, use language family base name (shared symbols)
+        if state == .symbols || state == .shiftedSymbols {
+            let symbolsBaseName = getSymbolsBaseName(for: languageId)
+            let suffix = getLayoutSuffix(for: state)
+            return "\(symbolsBaseName)_\(suffix).json"
+        }
+        
+        // For normal/shifted states, use the individual layout name
         let baseName = getBaseLayoutName(for: languageId)
         let suffix = getLayoutSuffix(for: state)
         
@@ -55,12 +63,10 @@ public class LayoutParser {
         switch languageId {
         case .tamil:
             return "mn_tamil99"
-        case .tamilAnjal:
-            return "mn_tamil_anjal"
+        case .tamilAnjal, .malayalamAnjal, .kannadaAnjal, .teluguAnjal:
+            return "mn_qwerty"  // All Anjal variants use QWERTY for normal/shifted
         case .malayalam:
             return "mn_malayalam"
-        case .malayalamAnjal:
-            return "mn_malayalam_anjal"
         case .hindi:
             return "mn_hindi"
         case .bengali:
@@ -69,14 +75,10 @@ public class LayoutParser {
             return "mn_gujarati"
         case .kannada:
             return "mn_kannada"
-        case .kannadaAnjal:
-            return "mn_kannada_anjal"
         case .punjabi:
             return "mn_punjabi"
         case .telugu:
             return "mn_telugu"
-        case .teluguAnjal:
-            return "mn_telugu_anjal"
         case .marathi:
             return "mn_marathi"
         case .oriya:
@@ -99,6 +101,58 @@ public class LayoutParser {
             return "mn_qwerty"
         case .english:
             return "mn_qwerty"
+        }
+    }
+    
+    private static func getSymbolsBaseName(for languageId: LanguageId) -> String {
+        switch languageId {
+        // Tamil family - both Tamil99 and Tamil Anjal share mn_tamil_symbols.json
+        case .tamil, .tamilAnjal:
+            return "mn_tamil"
+            
+        // Malayalam family - both Malayalam and Malayalam Anjal share mn_malayalam_symbols.json
+        case .malayalam, .malayalamAnjal:
+            return "mn_malayalam"
+            
+        // Kannada family - both Kannada and Kannada Anjal share mn_kannada_symbols.json
+        case .kannada, .kannadaAnjal:
+            return "mn_kannada"
+            
+        // Telugu family - both Telugu and Telugu Anjal share mn_telugu_symbols.json
+        case .telugu, .teluguAnjal:
+            return "mn_telugu"
+            
+        // Languages with dedicated symbols
+        case .hindi:
+            return "mn_hindi"
+        case .bengali:
+            return "mn_bangla"
+        case .gujarati:
+            return "mn_gujarati"
+        case .punjabi:
+            return "mn_punjabi"
+        case .marathi:
+            return "mn_marathi"
+        case .oriya:
+            return "mn_oriya"
+        case .assamese:
+            return "mn_assamese"
+        case .sinhala:
+            return "mn_sinhala"
+        case .grantha:
+            return "mn_grantha"
+            
+        // QWERTY-based symbols
+        case .jawi:
+            return "mn_jawi18"
+        case .qwertyJawi:
+            return "mn_qwerty_jawi"
+        case .sanskrit:
+            return "mn_sanskrit"
+        case .nepali:
+            return "mn_nepali"
+        case .qwerty, .english:
+            return "mn_common"
         }
     }
     
@@ -249,3 +303,4 @@ public class LayoutParser {
         }
     }
 }
+

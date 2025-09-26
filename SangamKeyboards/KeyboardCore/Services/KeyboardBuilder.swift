@@ -238,8 +238,8 @@ public class KeyboardBuilder {
         if isSpecialKey(key) {
             configureSpecialKey(button: button, key: key, interfaceStyle: interfaceStyle)
         } else {
-            // Regular text key
-            let displayLabel = localizeKeyLabel(key.keyLabel)
+            // Regular text key - use the new displayText property
+            let displayLabel = localizeKeyLabel(key.displayText)
             button.setTitle(displayLabel, for: .normal)
             
             let fontSize = getFontSize(for: key)
@@ -390,15 +390,8 @@ public class KeyboardBuilder {
         // Get appropriate color for current interface style
         let textColor = getTextColor(for: interfaceStyle)
         
-        // Use different SF Symbol based on state
-        let symbolName: String
-        if locked {
-            symbolName = "capslock.fill"  // Use dedicated caps lock symbol
-        } else if shifted {
-            symbolName = "shift.fill"     // Filled version for active shift
-        } else {
-            symbolName = "shift"          // Outline version for normal state
-        }
+        // Use shift symbol based on state (no caps lock support)
+        let symbolName = shifted ? "shift.fill" : "shift"
         
         if let shiftImage = UIImage(systemName: symbolName) {
             button.setImage(shiftImage, for: .normal)
@@ -410,9 +403,7 @@ public class KeyboardBuilder {
         }
         
         // Update background color for visual feedback
-        if locked {
-            button.backgroundColor = UIColor.systemBlue.withAlphaComponent(0.3)
-        } else if shifted {
+        if shifted {
             let baseColor = getModifierKeyBackgroundColor(for: interfaceStyle)
             button.backgroundColor = baseColor.withAlphaComponent(0.8)
         } else {
@@ -431,6 +422,7 @@ public class KeyboardBuilder {
     }
     
     private static func localizeKeyLabel(_ label: String) -> String {
+        // Handle special labels that start with #
         switch label {
         case "#space":
             return "space"
@@ -445,6 +437,7 @@ public class KeyboardBuilder {
         case "#globe":
             return "" // Will be handled by special key logic
         default:
+            // For regular characters (including Hindi, Tamil, etc.), return as-is
             return label
         }
     }

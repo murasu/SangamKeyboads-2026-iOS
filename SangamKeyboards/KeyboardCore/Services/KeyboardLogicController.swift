@@ -87,6 +87,10 @@ public class KeyboardLogicController {
         
         if currentLayout == nil {
             print("Warning: Failed to load layout for \(currentLanguage) - \(keyboardState)")
+        } else {
+            print("Successfully loaded layout for \(currentLanguage) - \(keyboardState)")
+            // Notify delegate that layout changed and view needs updating
+            delegate?.updateKeyboardView()
         }
     }
     
@@ -156,14 +160,9 @@ public class KeyboardLogicController {
             isShiftLocked = false
             
         case .shifted:
-            if isShiftLocked {
-                // Caps lock -> normal
-                keyboardState = .normal
-                isShiftLocked = false
-            } else {
-                // Shift -> caps lock (double tap)
-                isShiftLocked = true
-            }
+            // Skip caps lock - go directly back to normal
+            keyboardState = .normal
+            isShiftLocked = false
             
         case .symbols:
             if hasShiftedSymbolsLayout() {
@@ -277,7 +276,7 @@ public class KeyboardLogicController {
         case .normal:
             return "Normal"
         case .shifted:
-            return isShiftLocked ? "CAPS" : "Shift"
+            return "Shift" // Removed caps lock text since it's disabled
         case .symbols:
             return "123"
         case .shiftedSymbols:
