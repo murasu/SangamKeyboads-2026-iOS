@@ -117,7 +117,7 @@ class KeyboardViewController: UIInputViewController {
         
         let keyboardView = KeyboardBuilder.buildKeyboard(
             layout: layout,
-            containerView: keyboardContainer
+            containerView: keyboardContainer  // This parameter is now required
         ) { [weak self] key in
             self?.handleKeyPress(key)
         }
@@ -267,34 +267,6 @@ class KeyboardViewController: UIInputViewController {
             buildTamilKeyboard()
         }
     }
-
-    /*
-    private func handleShift() {
-        switch keyboardState {
-        case .normal:
-            keyboardState = .shifted
-            isShiftLocked = false
-            
-        case .shifted:
-            if isShiftLocked {
-                keyboardState = .normal
-                isShiftLocked = false
-            } else {
-                // Double-tap shift = caps lock
-                isShiftLocked = true
-            }
-            
-        case .symbols:
-            // Check if shifted symbols layout exists for current language
-            if hasShiftedSymbolsLayout(for: currentLanguage) {
-                keyboardState = .shiftedSymbols
-            }
-            
-        case .shiftedSymbols:
-            keyboardState = .symbols
-        }
-        buildTamilKeyboard()
-    } */
     
     private func hasShiftedSymbolsLayout(for languageId: LanguageId) -> Bool {
         // Languages that have shifted symbols layouts
@@ -434,20 +406,18 @@ class KeyboardViewController: UIInputViewController {
         minHeightConstraint.priority = UILayoutPriority(999) // High but not required
         view.addConstraint(minHeightConstraint)
     }
-    /*
-    override func updateViewConstraints() {
-        super.updateViewConstraints()
+
+    // Add this method to your KeyboardViewController class
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
         
-        let heightConstraint = NSLayoutConstraint(
-            item: view!,
-            attribute: .height,
-            relatedBy: .equal,
-            toItem: nil,
-            attribute: .notAnAttribute,
-            multiplier: 0.0,
-            constant: 300 // Increased for full Tamil layout
-        )
-        view.addConstraint(heightConstraint)
-    }*/
+        // Update keyboard colors when interface style changes
+        if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+            KeyboardBuilder.updateKeyboardColors(
+                in: keyboardContainer,
+                interfaceStyle: traitCollection.userInterfaceStyle
+            )
+        }
+    }
 }
 

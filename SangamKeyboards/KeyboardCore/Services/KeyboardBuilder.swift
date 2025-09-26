@@ -11,6 +11,74 @@ public class KeyboardBuilder {
     
     private static let debugMode = true // Enable debug to see what's happening
     
+    // MARK: - Color Configuration
+    private struct KeyboardColors {
+        // Regular key colors
+        static let lightModeRegularBackground = UIColor.white
+        static let darkModeRegularBackground = UIColor.systemGray5
+        
+        // Modifier key colors
+        static let lightModeModifierBackground = UIColor.systemGray4
+        static let darkModeModifierBackground = UIColor.systemGray4
+        
+        // Text colors
+        static let lightModeTextColor = UIColor.black
+        static let darkModeTextColor = UIColor.white
+        
+        // Border colors
+        static let lightModeBorderColor = UIColor.systemGray3
+        static let darkModeBorderColor = UIColor.systemGray2
+    }
+    
+    // MARK: - Color Helper Methods
+    private static func getCurrentInterfaceStyle(from view: UIView) -> UIUserInterfaceStyle {
+        return view.traitCollection.userInterfaceStyle
+    }
+    
+    private static func getRegularKeyBackgroundColor(for interfaceStyle: UIUserInterfaceStyle) -> UIColor {
+        switch interfaceStyle {
+        case .dark:
+            return KeyboardColors.darkModeRegularBackground
+        case .light, .unspecified:
+            return KeyboardColors.lightModeRegularBackground
+        @unknown default:
+            return KeyboardColors.lightModeRegularBackground
+        }
+    }
+    
+    private static func getModifierKeyBackgroundColor(for interfaceStyle: UIUserInterfaceStyle) -> UIColor {
+        switch interfaceStyle {
+        case .dark:
+            return KeyboardColors.darkModeModifierBackground
+        case .light, .unspecified:
+            return KeyboardColors.lightModeModifierBackground
+        @unknown default:
+            return KeyboardColors.lightModeModifierBackground
+        }
+    }
+    
+    private static func getTextColor(for interfaceStyle: UIUserInterfaceStyle) -> UIColor {
+        switch interfaceStyle {
+        case .dark:
+            return KeyboardColors.darkModeTextColor
+        case .light, .unspecified:
+            return KeyboardColors.lightModeTextColor
+        @unknown default:
+            return KeyboardColors.lightModeTextColor
+        }
+    }
+    
+    private static func getBorderColor(for interfaceStyle: UIUserInterfaceStyle) -> UIColor {
+        switch interfaceStyle {
+        case .dark:
+            return KeyboardColors.darkModeBorderColor
+        case .light, .unspecified:
+            return KeyboardColors.lightModeBorderColor
+        @unknown default:
+            return KeyboardColors.lightModeBorderColor
+        }
+    }
+    
     public static func buildKeyboard(
         layout: KeyboardLayout,
         containerView: UIView,
@@ -30,6 +98,7 @@ public class KeyboardBuilder {
             let rowView = createRowView(
                 row: row,
                 defaultKeyWidth: layout.keyWidth,
+                containerView: containerView, // Pass container view for interface style detection
                 keyPressHandler: keyPressHandler
             )
             
@@ -42,6 +111,7 @@ public class KeyboardBuilder {
     private static func createRowView(
         row: KeyboardRow,
         defaultKeyWidth: String,
+        containerView: UIView, // Added for interface style detection
         keyPressHandler: @escaping (KeyboardKey) -> Void
     ) -> UIView {
         
@@ -76,7 +146,7 @@ public class KeyboardBuilder {
         }
         
         for (index, key) in row.keys.enumerated() {
-            let button = createKeyButton(key: key, handler: keyPressHandler)
+            let button = createKeyButton(key: key, containerView: containerView, handler: keyPressHandler)
             rowContainer.addSubview(button)
             
             let keyWidthPercentage = keyWidths[index]
@@ -134,20 +204,39 @@ public class KeyboardBuilder {
     
     private static func createKeyButton(
         key: KeyboardKey,
+        containerView: UIView, // Added for interface style detection
         handler: @escaping (KeyboardKey) -> Void
     ) -> UIButton {
         
         let button = UIButton(type: .system)
-        button.backgroundColor = key.isModifier == true ? UIColor.systemGray4 : UIColor.white
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Detect current interface style
+        let interfaceStyle = getCurrentInterfaceStyle(from: containerView)
+        
+        // Set colors based on interface style and key type
+        if key.isModifier == true {
+            button.backgroundColor = getModifierKeyBackgroundColor(for: interfaceStyle)
+        } else {
+            button.backgroundColor = getRegularKeyBackgroundColor(for: interfaceStyle)
+        }
+        
+        // Set consistent styling
         button.layer.cornerRadius = 5
         button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.systemGray3.cgColor
-        button.setTitleColor(.black, for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.borderColor = getBorderColor(for: interfaceStyle).cgColor
+        
+        // Set text color
+        let textColor = getTextColor(for: interfaceStyle)
+        button.setTitleColor(textColor, for: .normal)
+        
+        if debugMode {
+            print("Key '\(key.keyLabel)' - Interface Style: \(interfaceStyle.rawValue), Background: \(button.backgroundColor?.description ?? "nil"), Text: \(textColor.description)")
+        }
         
         // Handle special keys with SF Symbols or text
         if isSpecialKey(key) {
-            configureSpecialKey(button: button, key: key)
+            configureSpecialKey(button: button, key: key, interfaceStyle: interfaceStyle)
         } else {
             // Regular text key
             let displayLabel = localizeKeyLabel(key.keyLabel)
@@ -170,12 +259,19 @@ public class KeyboardBuilder {
                 impactFeedback.impactOccurred()
             }
             
-            // Visual feedback
+            // Visual feedback with proper color restoration
             UIView.animate(withDuration: 0.1, animations: {
                 button.backgroundColor = button.backgroundColor?.withAlphaComponent(0.5)
             }) { _ in
                 UIView.animate(withDuration: 0.1) {
-                    button.backgroundColor = key.isModifier == true ? UIColor.systemGray4 : UIColor.white
+                    // Restore colors based on current interface style
+                    let currentInterfaceStyle = getCurrentInterfaceStyle(from: containerView)
+                    
+                    if key.isModifier == true {
+                        button.backgroundColor = getModifierKeyBackgroundColor(for: currentInterfaceStyle)
+                    } else {
+                        button.backgroundColor = getRegularKeyBackgroundColor(for: currentInterfaceStyle)
+                    }
                 }
             }
             
@@ -203,57 +299,54 @@ public class KeyboardBuilder {
         return isSpecial
     }
     
-    private static func configureSpecialKey(button: UIButton, key: KeyboardKey) {
+    private static func configureSpecialKey(button: UIButton, key: KeyboardKey, interfaceStyle: UIUserInterfaceStyle) {
         if debugMode {
             print("Configuring special key: code=\(key.keyCode), label='\(key.keyLabel)', isModifier=\(key.isModifier ?? false)")
-        }
-        
-        // Set background colors - keys with # prefix or specific codes should be gray (modifier color)
-        let shouldBeGray = key.keyLabel.hasPrefix("#") || key.keyCode == -1 || key.keyCode == -5 || key.keyCode == -2
-        if shouldBeGray {
-            button.backgroundColor = UIColor.systemGray4
         }
         
         // Clear any existing content
         button.setTitle("", for: .normal)
         button.setImage(nil, for: .normal)
         
+        // Get appropriate colors for current interface style
+        let textColor = getTextColor(for: interfaceStyle)
+        
         // Configure based on key type
         switch key.keyCode {
         case -1: // Shift - use SF Symbol
             if let shiftImage = UIImage(systemName: "shift") {
                 button.setImage(shiftImage, for: .normal)
-                button.tintColor = .black
+                button.tintColor = textColor // Use interface style appropriate color
                 button.imageView?.contentMode = .scaleAspectFit
                 
                 // Set appropriate size for the symbol
                 let symbolConfig = UIImage.SymbolConfiguration(pointSize: 18, weight: .medium)
                 button.setPreferredSymbolConfiguration(symbolConfig, forImageIn: .normal)
                 
-                if debugMode { print("✓ Set SF Symbol 'shift' for key \(key.keyCode)") }
+                if debugMode { print("✅ Set SF Symbol 'shift' for key \(key.keyCode)") }
             } else {
                 // Fallback to text if SF Symbol isn't available
                 button.setTitle("⬆", for: .normal)
-                button.setTitleColor(.black, for: .normal)
-                if debugMode { print("⚠ SF Symbol 'shift' not available, using fallback") }
+                button.setTitleColor(textColor, for: .normal)
+                if debugMode { print("⚠️ SF Symbol 'shift' not available, using fallback") }
             }
             
         case -5: // Delete - use SF Symbol
             if let deleteImage = UIImage(systemName: "delete.left") {
                 button.setImage(deleteImage, for: .normal)
-                button.tintColor = .black
+                button.tintColor = textColor // Use interface style appropriate color
                 button.imageView?.contentMode = .scaleAspectFit
                 
                 // Set appropriate size for the symbol
                 let symbolConfig = UIImage.SymbolConfiguration(pointSize: 18, weight: .medium)
                 button.setPreferredSymbolConfiguration(symbolConfig, forImageIn: .normal)
                 
-                if debugMode { print("✓ Set SF Symbol 'delete.left' for key \(key.keyCode)") }
+                if debugMode { print("✅ Set SF Symbol 'delete.left' for key \(key.keyCode)") }
             } else {
                 // Fallback to text if SF Symbol isn't available
                 button.setTitle("⌫", for: .normal)
-                button.setTitleColor(.black, for: .normal)
-                if debugMode { print("⚠ SF Symbol 'delete.left' not available, using fallback") }
+                button.setTitleColor(textColor, for: .normal)
+                if debugMode { print("⚠️ SF Symbol 'delete.left' not available, using fallback") }
             }
             
         default:
@@ -261,10 +354,10 @@ public class KeyboardBuilder {
             let displayText = getDisplayTextForKey(key)
             button.setTitle(displayText, for: .normal)
             button.titleLabel?.font = UIFont.systemFont(ofSize: getFontSize(for: key), weight: .medium)
-            button.setTitleColor(.black, for: .normal)
+            button.setTitleColor(textColor, for: .normal) // Use interface style appropriate color
             
             if debugMode {
-                print("Set text '\(displayText)' for key \(key.keyCode)")
+                print("Set text '\(displayText)' for key \(key.keyCode) with color \(textColor.description)")
             }
         }
         
@@ -288,24 +381,28 @@ public class KeyboardBuilder {
     }
     
     // Method to update shift key appearance
-    public static func updateShiftKeyAppearance(button: UIButton, shifted: Bool, locked: Bool = false) {
+    public static func updateShiftKeyAppearance(button: UIButton, shifted: Bool, locked: Bool = false, interfaceStyle: UIUserInterfaceStyle) {
         guard button.tag == -1 else { return } // Only for shift keys
         
         // Clear any existing title
         button.setTitle("", for: .normal)
         
+        // Get appropriate color for current interface style
+        let textColor = getTextColor(for: interfaceStyle)
+        
         // Use different SF Symbol based on state
-        let symbolName = if locked {
-            "shift.fill"  // Filled version for caps lock
+        let symbolName: String
+        if locked {
+            symbolName = "capslock.fill"  // Use dedicated caps lock symbol
         } else if shifted {
-            "shift.fill"  // Filled version for active shift
+            symbolName = "shift.fill"     // Filled version for active shift
         } else {
-            "shift"       // Regular version for normal state
+            symbolName = "shift"          // Outline version for normal state
         }
         
         if let shiftImage = UIImage(systemName: symbolName) {
             button.setImage(shiftImage, for: .normal)
-            button.tintColor = .black
+            button.tintColor = textColor // Use interface style appropriate color
             
             // Set appropriate size for the symbol
             let symbolConfig = UIImage.SymbolConfiguration(pointSize: 18, weight: .medium)
@@ -316,9 +413,10 @@ public class KeyboardBuilder {
         if locked {
             button.backgroundColor = UIColor.systemBlue.withAlphaComponent(0.3)
         } else if shifted {
-            button.backgroundColor = UIColor.systemGray3
+            let baseColor = getModifierKeyBackgroundColor(for: interfaceStyle)
+            button.backgroundColor = baseColor.withAlphaComponent(0.8)
         } else {
-            button.backgroundColor = UIColor.systemGray4
+            button.backgroundColor = getModifierKeyBackgroundColor(for: interfaceStyle)
         }
     }
     
@@ -370,11 +468,39 @@ public class KeyboardBuilder {
     
     // Method to find and update all shift keys in a view hierarchy
     public static func updateAllShiftKeys(in view: UIView, shifted: Bool, locked: Bool = false) {
+        let interfaceStyle = getCurrentInterfaceStyle(from: view)
         for subview in view.subviews {
             if let button = subview as? UIButton, button.tag == -1 {
-                updateShiftKeyAppearance(button: button, shifted: shifted, locked: locked)
+                updateShiftKeyAppearance(button: button, shifted: shifted, locked: locked, interfaceStyle: interfaceStyle)
             }
             updateAllShiftKeys(in: subview, shifted: shifted, locked: locked)
+        }
+    }
+    
+    // Method to update all key colors when interface style changes
+    public static func updateKeyboardColors(in view: UIView, interfaceStyle: UIUserInterfaceStyle) {
+        for subview in view.subviews {
+            if let button = subview as? UIButton {
+                // Update colors based on key type
+                if button.tag == -1 || button.tag == -2 || button.tag == -5 || button.tag == -6 {
+                    // Modifier key
+                    button.backgroundColor = getModifierKeyBackgroundColor(for: interfaceStyle)
+                } else {
+                    // Regular key
+                    button.backgroundColor = getRegularKeyBackgroundColor(for: interfaceStyle)
+                }
+                
+                // Update text/tint color
+                let textColor = getTextColor(for: interfaceStyle)
+                button.setTitleColor(textColor, for: .normal)
+                button.tintColor = textColor
+                
+                // Update border color
+                button.layer.borderColor = getBorderColor(for: interfaceStyle).cgColor
+            }
+            
+            // Recursively update subviews
+            updateKeyboardColors(in: subview, interfaceStyle: interfaceStyle)
         }
     }
     
